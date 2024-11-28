@@ -2,6 +2,9 @@ package com.example.dz7Api.Models;
 
 import java.sql.Time;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import lombok.Getter;
 import lombok.Setter;
 import nonapi.io.github.classgraph.json.Id;

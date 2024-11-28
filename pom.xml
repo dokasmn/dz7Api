@@ -68,7 +68,7 @@
 			<artifactId>springfox-boot-starter</artifactId>
 			<version>3.0.0</version>
 		</dependency>
-		<dependencies>
+	
     	<dependency>
         	<groupId>jakarta.persistence</groupId>
         	<artifactId>jakarta.persistence-api</artifactId>
@@ -79,6 +79,19 @@
         	<artifactId>hibernate-core</artifactId>
         	<version>5.6.10.Final</version>
     	</dependency>
+		<!-- Dependência do Jakarta Persistence (JPA) -->
+		<dependency>
+			<groupId>jakarta.persistence</groupId>
+			<artifactId>jakarta.persistence-api</artifactId>
+			<version>3.1.0</version> <!-- Ou qualquer versão mais recente -->
+		</dependency>
+	
+		<!-- Dependência do Hibernate (para implementação JPA) -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>5.6.10.Final</version> <!-- Ou versão mais recente -->
+		</dependency>
 	</dependencies>
 	
 	<build>
