@@ -1,38 +1,33 @@
 package com.example.dz7Api.Models;
 
-import java.sql.Time;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
 import lombok.Getter;
 import lombok.Setter;
-import nonapi.io.github.classgraph.json.Id;
 
+import java.sql.Time;
+
+
+@Getter
+@Setter
 @Entity
 public class Music {
-    @Getter
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idMusic;
-
-    @Getter
-    @Setter
     private String musicName;
-
-    @Getter
-    @Setter
     private String musicLink;
 
-    @Getter
-    @Setter
-    private Time musicDurationTime;
-
-    @Getter
-    @Setter
+    // para duração é possível utilizar o Duration, que é mais preciso e flexível, conferir possibilidade
+    private Time musicDuration;
     private String musicGenre;
 
-    public Music(String musicName, String musicLink, Time musicDurationTime, String musicGenre) {
+
+    public Music(String musicName, String musicLink, Time musicDuration, String musicGenre) {
         if (musicName == null || musicName.isEmpty()) {
             throw new IllegalArgumentException("A música deve ter um nome!");
         }
@@ -41,18 +36,21 @@ public class Music {
             throw new IllegalArgumentException("A música deve ter um link!");
         }
 
-        if (musicDurationTime == null) {
+        if (musicDuration == null) {
             throw new IllegalArgumentException("A música deve ter um tempo de duração!");
         }
 
         if (musicGenre == null || musicGenre.isEmpty()) {
             throw new IllegalArgumentException("A música deve ter um gênero!");
         }
-        
+
         this.musicName = musicName;
         this.musicLink = musicLink;
-        this.musicDurationTime = musicDurationTime;
+        this.musicDuration = musicDuration;
         this.musicGenre = musicGenre;
     }
-    
+
+    // Pra gerar um construtor sem parametros pode-se usar o Lombok, conferir necessidade
+    // @NoArgsConstructor
 }
+

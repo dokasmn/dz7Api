@@ -30,82 +30,94 @@
 		<java.version>21</java.version>
 	</properties>
 	<dependencies>
+		<!-- Spring Boot Web Starter -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+
+		<!-- Spring Boot DevTools (para desenvolvimento) -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
+
+		<!-- Lombok para facilitar o código (Getter, Setter, etc) -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<optional>true</optional>
+			<version>1.18.36</version>
+			<scope>provided</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-compiler-plugin</artifactId>
+			<version>3.13.0</version>
+		</dependency>
+
+
+		<!-- Spring Boot Starter Test (para testes) -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- Springdoc OpenAPI para documentação da API -->
 		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
 			<version>2.6.0</version>
 		</dependency>
+
+		<!-- Spring Boot Starter Security (para segurança) -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
+
+		<!-- Springfox para gerar Swagger (não recomendado, o Springdoc já gera a documentação) -->
 		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-boot-starter</artifactId>
 			<version>3.0.0</version>
 		</dependency>
-	
-    	<dependency>
-        	<groupId>jakarta.persistence</groupId>
-        	<artifactId>jakarta.persistence-api</artifactId>
-        	<version>3.1.0</version>
-    	</dependency>
-    	<dependency>
-        	<groupId>org.hibernate</groupId>
-        	<artifactId>hibernate-core</artifactId>
-        	<version>5.6.10.Final</version>
-    	</dependency>
-		<!-- Dependência do Jakarta Persistence (JPA) -->
+
+		<!-- Jakarta Persistence API (JPA) -->
 		<dependency>
 			<groupId>jakarta.persistence</groupId>
 			<artifactId>jakarta.persistence-api</artifactId>
-			<version>3.1.0</version> <!-- Ou qualquer versão mais recente -->
+			<version>3.1.0</version>
 		</dependency>
-	
-		<!-- Dependência do Hibernate (para implementação JPA) -->
+
+		<!-- Hibernate Core (implementação do JPA) -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
-			<version>5.6.10.Final</version> <!-- Ou versão mais recente -->
+			<version>5.6.10.Final</version>
 		</dependency>
 	</dependencies>
+
 	
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.10.0</version> <!-- Versão mais recente -->
 				<configuration>
-					<excludes>
-						<exclude>
+					<source>1.8</source>
+					<target>1.8</target>
+					<annotationProcessorPaths>
+						<path>
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
-						</exclude>
-					</excludes>
+							<version>1.18.36</version> <!-- Atualização para a versão mais recente -->
+						</path>                         
+					</annotationProcessorPaths>
 				</configuration>
 			</plugin>
 		</plugins>
