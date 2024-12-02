@@ -47,6 +47,6 @@ public class MusicController {
 
    @PostMapping("")
    public ResponseEntity<String> addMusic (@RequestBody Music newMusic) {
-       return ResponseEntity.created()
+       return ResponseEntity.created();
    }
 }

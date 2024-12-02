@@ -4,24 +4,18 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import lombok.Getter;
 import lombok.Setter;
-import nonapi.io.github.classgraph.json.Id;
+import jakarta.persistence.Id;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
 public class Playlist {
-    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idPlaylist;
 
-    @Getter
-    @Setter 
+    @NotNull(message = "A playlist deve ter um nome!")
+    @Size(min = 1, message = "Nome inválido! Tente novamente")
     private String playlistName;
-
-    public Playlist(String playlistName) {
-        if (playlistName == null || playlistName.isEmpty()) {
-            throw new IllegalArgumentException("A playlist deve possuir um nome");
-        }
-
-        this.playlistName = playlistName;
-    }
 }
