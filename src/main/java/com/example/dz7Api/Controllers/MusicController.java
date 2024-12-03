@@ -23,20 +23,18 @@ public class MusicController {
 
     private final MusicService musicService;
 
-    
     public MusicController(MusicService musicService) {
         this.musicService = musicService;
     }
 
-
     @GetMapping
     public ResponseEntity<List<Music>> listMusics (Model model) {
-        if (musics.isEmpty())
+        if (musics.isEmpty()){
             return ResponseEntity.noContent().build();
+        }
         return ResponseEntity.ok(musics);
     }
-
-
+    
     @GetMapping("/{musicName}")
     public ResponseEntity<Music> getMusic(@PathVariable String musicName) {
         if (musicName == null || musicName.isEmpty()) {
