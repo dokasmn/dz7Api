@@ -1,9 +1,9 @@
-package com.example.dz7Api.Services;
+package com.example.dz7Api.service;
 
 import org.springframework.stereotype.Service;
 
-import com.example.dz7Api.Models.Music;
-import com.example.dz7Api.Repositories.MusicRepository;
+import com.example.dz7Api.models.Music;
+import com.example.dz7Api.repository.MusicRepository;
 
 import jakarta.persistence.EntityNotFoundException;
 
@@ -29,8 +29,8 @@ public class MusicService {
     }
 
 
-    // public void deleteMusic(Long id) {
-    //     musicRepository.deleteById(id);
-    // }
+    public void deleteMusic(Long id) {
+        musicRepository.deleteById(id);
+    }
     
 }

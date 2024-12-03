@@ -1,36 +1,64 @@
-package com.example.dz7Api.Models;
+package com.example.dz7Api.models;
 
 import java.util.List;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
-
-import lombok.NoArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.Table;
 
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
+@Table(name = "category")
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_category")
     private int idCategory;
 
-    @NotNull(message = "O nome da categoria não pode ser nulo!")
-    @Size(min = 1, message = "Nome inválido! Tente novamente.")
+    @Column(name = "name_category")
     private String categoryName;
 
-    @NotNull(message = "A temperatura da categoria não pode ser nula!")
-    @Size(min = 1, message = "Temperatura inválida! Tente novamente.")
+    @Column(name = "temperature")
     private int categoryTemperature;
 
-    @OneToMany(mappedBy="category")
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Music> musics;
+    
+
+    public int getIdCategory() {
+        return idCategory;
+    }
+
+    public void setIdCategory(int idCategory) {
+        this.idCategory = idCategory;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
+    public int getCategoryTemperature() {
+        return categoryTemperature;
+    }
+
+    public void setCategoryTemperature(int categoryTemperature) {
+        this.categoryTemperature = categoryTemperature;
+    }
+
+    public List<Music> getMusics() {
+        return musics;
+    }
+
+    public void setMusics(List<Music> musics) {
+        this.musics = musics;
+    }
 
 }
