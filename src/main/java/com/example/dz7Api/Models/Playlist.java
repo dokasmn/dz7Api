@@ -1,6 +1,10 @@
 package com.example.dz7Api.Models;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import lombok.NoArgsConstructor;
 import jakarta.persistence.GenerationType;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,3 +26,4 @@ public class Playlist {
     @Size(min = 1, message = "Nome inválido! Tente novamente")
     private String playlistName;
 }
+                
