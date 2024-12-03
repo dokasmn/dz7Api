@@ -1,9 +1,9 @@
-package com.example.dz7api.services;
+package com.example.dz7Api.Services;
 
 import org.springframework.stereotype.Service;
 
-import com.example.dz7api.models.Music;
-import com.example.dz7api.repositories.MusicRepository;
+import com.example.dz7Api.Models.Music;
+import com.example.dz7Api.Repositories.MusicRepository;
 
 import jakarta.persistence.EntityNotFoundException;
 

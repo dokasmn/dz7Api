@@ -1,4 +1,4 @@
-package com.example.dz7api.models;
+package com.example.dz7Api.Models;
 
 // java util
 import java.util.HashSet;
@@ -41,7 +41,7 @@ public class Playlist {
 
     @ManyToMany
     @JoinTable(
-        name = "playlist_music",
+        name = "playlist_has_music",
         joinColumns = @JoinColumn(name = "playlist_id"),
         inverseJoinColumns = @JoinColumn(name = "music_id")
     )

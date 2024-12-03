@@ -1,4 +1,4 @@
-package com.example.dz7api.config;
+package com.example.dz7Api.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

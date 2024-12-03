@@ -1,4 +1,4 @@
-package com.example.dz7api.models;
+package com.example.dz7Api.Models;
 
 // java util
 import java.util.HashSet;

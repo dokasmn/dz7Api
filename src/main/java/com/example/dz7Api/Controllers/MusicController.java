@@ -1,9 +1,9 @@
-package com.example.dz7api.controllers;
+package com.example.dz7Api.Controllers;
 
 import org.springframework.web.bind.annotation.*;
 
-import com.example.dz7api.models.Music;
-import com.example.dz7api.services.MusicService;
+import com.example.dz7Api.Models.Music;
+import com.example.dz7Api.Services.MusicService;
 
 import jakarta.persistence.EntityNotFoundException;
 

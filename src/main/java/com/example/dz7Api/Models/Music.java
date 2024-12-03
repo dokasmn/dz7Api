@@ -1,4 +1,4 @@
-package com.example.dz7api.models;
+package com.example.dz7Api.Models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -48,7 +48,6 @@ public class Music {
     @ManyToOne
     @JoinColumn(name = "idCategory", nullable = false)
     @NotNull(message = "A música deve possuir uma categoria!")
-    @Column(name = "categoria_id_categoria")
     private Category musicCategory;
 
     // Pra gerar um construtor sem parametros pode-se usar o Lombok, conferir necessidade

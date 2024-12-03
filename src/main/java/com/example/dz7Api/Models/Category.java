@@ -1,4 +1,4 @@
-package com.example.dz7api.models;
+package com.example.dz7Api.Models;
 
 import java.util.List;
 
@@ -36,7 +36,7 @@ public class Category {
     @Column(name = "temperature")
     private int categoryTemperature;
 
-    @OneToMany(mappedBy="category")
+    @OneToMany(mappedBy="musicCategory")
     private List<Music> musics;
 
 }
