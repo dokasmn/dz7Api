@@ -24,7 +24,7 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_category")
-    private int idCategory;
+    private Long idCategory;
 
     @NotNull(message = "O nome da categoria não pode ser nulo!")
     @Size(min = 1, message = "Nome inválido! Tente novamente.")

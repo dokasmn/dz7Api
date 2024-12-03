@@ -32,7 +32,7 @@ public class Artist {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_artist")
-    private int idArtist;
+    private Long idArtist;
 
     @Column(name = "name_artist")
     @NotNull(message = "O artista deve ter um nome!")

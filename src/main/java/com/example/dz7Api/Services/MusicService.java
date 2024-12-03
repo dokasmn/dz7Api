@@ -22,12 +22,10 @@ public class MusicService {
         return musicRepository.save(music);
     }
 
-
     public Music getMusicById(Long id) {
         return musicRepository.findById(id).orElseThrow(() ->
             new EntityNotFoundException("Music not found"));
     }
-
 
     public void deleteMusic(Long id) {
         musicRepository.deleteById(id);

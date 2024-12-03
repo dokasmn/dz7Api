@@ -32,7 +32,7 @@ public class Playlist {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_playlist")
-    private int idPlaylist;
+    private Long idPlaylist;
 
     @NotNull(message = "A playlist deve ter um nome!")
     @Size(min = 1, message = "Nome inválido! Tente novamente")
