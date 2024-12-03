@@ -1,4 +1,4 @@
-package com.example.dz7Api.Models;
+package com.example.dz7api.models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -16,32 +16,33 @@ import lombok.Setter;
 import java.time.Duration;
 
 @Getter
+@Setter
 @Entity
 @NoArgsConstructor
-@Table(name = "musica")
+@Table(name = "music")
 public class Music {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_musica")
+    @Column(name = "id_music")
     private Long idMusic;
 
     @NotNull(message = "A música deve ter um nome!")
     @Size(min = 1, message = "Nome inválido!")
-    @Column(name = "nome_musica")
+    @Column(name = "name_music")
     private String musicName;
 
     @NotNull(message = "A música deve ter um link!")
     @Size(min = 1, message = "O link da música não pode ser vazio!")
-    @Column(name = "link_musica")
+    @Column(name = "link_music")
     private String musicLink;
     
     @NotNull(message = "A música deve ter um tempo de duração!")
-    @Column(name = "duracao_musica")
+    @Column(name = "duration_music")
     private Duration musicDuration;
 
     @NotNull(message = "A música deve ter um gênero!")
     @Size(min = 1, message = "O gênero da música não pode ser vazio!")
-    @Column(name = "genero_musica")
+    @Column(name = "genre_music")
     private String musicGenre;
 
     @ManyToOne

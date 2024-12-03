@@ -1,4 +1,4 @@
-package com.example.dz7Api;
+package com.example.dz7api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package com.example.dz7Api.Models;
+package com.example.dz7api.models;
 
 import java.util.List;
 
@@ -19,21 +19,21 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "categoria")
+@Table(name = "category")
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_categoria")
+    @Column(name = "id_category")
     private int idCategory;
 
     @NotNull(message = "O nome da categoria não pode ser nulo!")
     @Size(min = 1, message = "Nome inválido! Tente novamente.")
-    @Column(name = "nome_categoria")
+    @Column(name = "name_category")
     private String categoryName;
 
     @NotNull(message = "A temperatura da categoria não pode ser nula!")
     @Size(min = 1, message = "Temperatura inválida! Tente novamente.")
-    @Column(name = "temperatura")
+    @Column(name = "temperature")
     private int categoryTemperature;
 
     @OneToMany(mappedBy="category")

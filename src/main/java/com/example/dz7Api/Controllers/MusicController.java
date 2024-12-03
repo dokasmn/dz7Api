@@ -1,8 +1,9 @@
-package com.example.dz7Api.Controllers;
+package com.example.dz7api.controllers;
 
 import org.springframework.web.bind.annotation.*;
-import com.example.dz7Api.Models.Music;
-import com.example.dz7Api.Services.MusicService;
+
+import com.example.dz7api.models.Music;
+import com.example.dz7api.services.MusicService;
 
 import jakarta.persistence.EntityNotFoundException;
 
@@ -22,9 +23,11 @@ public class MusicController {
 
     private final MusicService musicService;
 
+    
     public MusicController(MusicService musicService) {
         this.musicService = musicService;
     }
+
 
     @GetMapping
     public ResponseEntity<List<Music>> listMusics (Model model) {
@@ -34,7 +37,7 @@ public class MusicController {
     }
 
 
-    @GetMapping("/api/music/{musicName}")
+    @GetMapping("/{musicName}")
     public ResponseEntity<Music> getMusic(@PathVariable String musicName) {
         if (musicName == null || musicName.isEmpty()) {
             return ResponseEntity.badRequest().build();
@@ -60,7 +63,6 @@ public class MusicController {
     }
 
 
-    // Endpoint para buscar uma música por ID
     @GetMapping("/{id}")
     public ResponseEntity<Music> getMusicById(@PathVariable Long id) {
         try {
@@ -71,7 +73,7 @@ public class MusicController {
         }
     }
 
-    // Endpoint para deletar uma música por ID
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteMusic(@PathVariable Long id) {
         musicService.deleteMusic(id);
