@@ -6,7 +6,7 @@ import com.example.dz7Api.Models.Music;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional; 
+import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
@@ -42,11 +42,8 @@ public class MusicController {
     }
 
 
-    @PostMapping
-    public ResponseEntity<String> addMusic(@RequestBody Music newMusic) {
-        // Verifica o nome da música usando o método getter
-        String musicName = newMusic.getMusicName();
-        musics.add(newMusic);
-        return ResponseEntity.ok("Música adicionada: " + musicName);
-    }
+//    @PostMapping("")
+//    public ResponseEntity<String> addMusic (@RequestBody Music newMusic) {
+//        return ResponseEntity.created();
+//    }
 }

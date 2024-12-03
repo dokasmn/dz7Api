@@ -1,37 +1,36 @@
 package com.example.dz7Api.Models;
 
+import java.util.List;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import lombok.NoArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-import nonapi.io.github.classgraph.json.Id;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
 public class Category {
-    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idCategory;
 
-    @Getter
-    @Setter
+    @NotNull(message = "O nome da categoria não pode ser nulo!")
+    @Size(min = 1, message = "Nome inválido! Tente novamente.")
     private String categoryName;
 
-    @Getter
-    @Setter
-    private String categoryTemperature;
+    @NotNull(message = "A temperatura da categoria não pode ser nula!")
+    @Size(min = 1, message = "Temperatura inválida! Tente novamente.")
+    private int categoryTemperature;
 
-    public Category(String categoryName, String categoryTemperature) {
-        if (categoryName == null || categoryName.isEmpty()) {
-            throw new IllegalArgumentException("A categoria deve possuir um nome!");
-        }
-        
-        if (categoryTemperature == null || categoryTemperature.isEmpty()) {
-            throw new IllegalArgumentException("A categoria deve possuir uma temperatura!");
-        }
+    @OneToMany(mappedBy="category")
+    private List<Music> musics;
 
-        this.categoryName = categoryName;
-        this.categoryTemperature = categoryTemperature;
-    }
 }

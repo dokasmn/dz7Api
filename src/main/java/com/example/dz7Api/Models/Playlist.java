@@ -1,27 +1,29 @@
 package com.example.dz7Api.Models;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import lombok.NoArgsConstructor;
 import jakarta.persistence.GenerationType;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-import nonapi.io.github.classgraph.json.Id;
+import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
 public class Playlist {
-    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idPlaylist;
 
-    @Getter
-    @Setter 
+    @NotNull(message = "A playlist deve ter um nome!")
+    @Size(min = 1, message = "Nome inválido! Tente novamente")
     private String playlistName;
-
-    public Playlist(String playlistName) {
-        if (playlistName == null || playlistName.isEmpty()) {
-            throw new IllegalArgumentException("A playlist deve possuir um nome");
-        }
-
-        this.playlistName = playlistName;
-    }
 }
+                
