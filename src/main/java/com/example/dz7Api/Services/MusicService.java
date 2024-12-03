@@ -16,9 +16,9 @@ public class MusicService {
     }
 
     public Music saveMusic(Music music) {
-        if (musicRepository.existsByTitleAndArtistName(music.getMusicName(), music.getArtistName())) {
-            throw new IllegalArgumentException("Music already exists");
-        }
+        // if (musicRepository.existsByTitleAndArtistName(music.getMusicName(), music.getArtistName())) {
+        //     throw new IllegalArgumentException("Music already exists");
+        // }
         return musicRepository.save(music);
     }
 

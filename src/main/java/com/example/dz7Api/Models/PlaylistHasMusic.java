@@ -1,6 +1,7 @@
 package com.example.dz7Api.Models;
 
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.persistence.GeneratedValue;
@@ -24,10 +25,12 @@ public class PlaylistHasMusic {
 
     @ManyToOne
     @JoinColumn(name = "idPlaylist", nullable = false)
+    @Column(name = "playlist_id_playlist")
     private Playlist playlist;
 
     @ManyToOne
     @JoinColumn(name = "idMusic", nullable = false)
+    @Column(name = "musica_id_musica")
     private Music music;
 
 }
