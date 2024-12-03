@@ -29,8 +29,8 @@ public class MusicService {
     }
 
 
-    public void deleteMusic(Long id) {
-        musicRepository.deleteById(id);
-    }
+    // public void deleteMusic(Long id) {
+    //     musicRepository.deleteById(id);
+    // }
     
 }
