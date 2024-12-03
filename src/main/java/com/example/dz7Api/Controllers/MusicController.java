@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.http.HttpStatus;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 
@@ -45,8 +43,8 @@ public class MusicController {
     }
 
 
-   @PostMapping("")
-   public ResponseEntity<String> addMusic (@RequestBody Music newMusic) {
-       return ResponseEntity.created();
-   }
+//    @PostMapping("")
+//    public ResponseEntity<String> addMusic (@RequestBody Music newMusic) {
+//        return ResponseEntity.created();
+//    }
 }
