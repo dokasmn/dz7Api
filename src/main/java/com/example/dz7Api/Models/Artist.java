@@ -9,40 +9,45 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
-import jakarta.persistence.JoinColumn;
 
 @Entity
 @Table(name = "artist")
 public class Artist {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_artist")
-    private int idArtist;
+    private Long idArtist;
 
-    @Column(name = "name_artist")
     private String artistName;
+
+    @ManyToMany
+    @JoinTable(
+      name = "artist_music",
+      joinColumns = @JoinColumn(name = "artist_id"),
+      inverseJoinColumns = @JoinColumn(name = "music_id"))
+    private Set<Music> musics = new HashSet<>();
 
     @Column(name = "link_artist")
     private String artistProfileLink;
 
-    @ManyToMany
-    @JoinTable(
-        name = "artist_has_music",
-        joinColumns = @JoinColumn(name = "artist_id"),
-        inverseJoinColumns = @JoinColumn(name = "music_id")
-    )
-    private Set<Music> artistMusics = new HashSet<>();
     
+    public Artist() {}
 
-    public int getIdArtist() {
+    public Artist(Long idArtist, String artistName, String artistProfileLink) {
+        this.idArtist = idArtist;
+        this.artistName = artistName;
+        this.artistProfileLink = artistProfileLink;
+    }
+
+    public Long getIdArtist() {
         return idArtist;
     }
 
-    public void setIdArtist(int idArtist) {
+    public void setIdArtist(Long idArtist) {
         this.idArtist = idArtist;
     }
 
@@ -60,13 +65,5 @@ public class Artist {
 
     public void setArtistProfileLink(String artistProfileLink) {
         this.artistProfileLink = artistProfileLink;
-    }
-
-    public Set<Music> getArtistMusics() {
-        return artistMusics;
-    }
-
-    public void setArtistMusics(Set<Music> artistMusics) {
-        this.artistMusics = artistMusics;
     }
 }

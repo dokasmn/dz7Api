@@ -35,6 +35,14 @@ public class Playlist {
         
         
     
+    public Playlist(){}
+    
+    public Playlist(int idPlaylist, String playlistName, Set<Music> musics) {
+        this.idPlaylist = idPlaylist;
+        this.playlistName = playlistName;
+        this.musics = musics;
+    }
+    
     public int getIdPlaylist() {
         return idPlaylist;
     }
