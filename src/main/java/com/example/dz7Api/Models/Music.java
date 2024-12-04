@@ -3,6 +3,7 @@ package com.example.dz7Api.Models;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.example.dz7Api.Models.base.BaseModel;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Column;
@@ -18,7 +19,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "music")
-public class Music {
+public class Music extends BaseModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,13 +46,9 @@ public class Music {
     @JsonBackReference
     private Category category;
     
-    @ManyToMany
-    @JoinTable(
-        name = "artist_has_music",
-        joinColumns = @JoinColumn(name = "music_id"),
-        inverseJoinColumns = @JoinColumn(name = "artist_id")
-    )
-    private Set<Artist> artists = new HashSet<>();
+    @ManyToMany(mappedBy = "musics")
+    private Set<Artist> artists;
+
     
 
     public Music(){}

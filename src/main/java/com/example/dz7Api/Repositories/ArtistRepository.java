@@ -9,11 +9,10 @@ import com.example.dz7Api.Models.Music;
 
 public interface ArtistRepository extends JpaRepository<Artist, Long> {
 
-    @Query("SELECT CASE WHEN COUNT(a) > 0 THEN TRUE ELSE FALSE END " +
-           "FROM Artist a JOIN a.musics m " +
-           "WHERE m = :music AND a.artistName = :artistName")
-    boolean existsByMusicsContainingAndArtistName(@Param("music") Music music,
-                                                 @Param("artistName") String artistName);
+       @Query("SELECT CASE WHEN COUNT(a) > 0 THEN true ELSE false END " +
+              "FROM Artist a JOIN a.musics m " +
+              "WHERE m.musicName = :musicTitle AND a.username = :artistName")
+       boolean existsByMusicsTitleAndArtistName(String musicTitle, String artistName);
 }
 
 

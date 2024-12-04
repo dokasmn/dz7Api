@@ -1,8 +1,9 @@
 package com.example.dz7Api.Controllers;
 
+import com.example.dz7Api.Models.Artist;
 // models
 import com.example.dz7Api.Models.Music;
-
+import com.example.dz7Api.Models.base.BaseUser;
 // services
 import com.example.dz7Api.Services.MusicService;
 
@@ -13,6 +14,7 @@ import jakarta.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 // spring
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +29,7 @@ public class MusicController {
     private final MusicService musicService;
 
     
+    @Autowired
     public MusicController(MusicService musicService) {
         this.musicService = musicService;
     }
@@ -40,6 +43,18 @@ public class MusicController {
         }
         return ResponseEntity.ok(musics);
     }
+
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Music> getMusicById(@PathVariable Long id) {
+        try {
+            Music music = musicService.getMusicById(id);
+            return ResponseEntity.ok(music);
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 
 
     // @GetMapping("/{musicName}")
@@ -58,9 +73,9 @@ public class MusicController {
 
 
     @PostMapping
-    public ResponseEntity<Music> saveMusic(@RequestBody Music music) {
+    public ResponseEntity<Music> saveMusic(@RequestBody Music music, @RequestParam Artist artist) {
         try {
-            Music savedMusic = musicService.saveMusic(music);
+            Music savedMusic = musicService.saveMusic(music, artist);
             return ResponseEntity.ok(savedMusic);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body(null);
@@ -68,20 +83,15 @@ public class MusicController {
     }
 
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Music> getMusicById(@PathVariable Long id) {
-        try {
-            Music music = musicService.getMusicById(id);
-            return ResponseEntity.ok(music);
-        } catch (EntityNotFoundException e) {
-            return ResponseEntity.notFound().build();
-        }
+    @PutMapping("/{id}")
+    public Music updateMusic(@RequestBody Music music, @PathVariable Long id, @RequestParam Artist artist) {
+        return musicService.updateMusic(music, id, artist);
     }
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteMusic(@PathVariable Long id) {
-        musicService.deleteMusic(id);
+    public ResponseEntity<Void> deleteMusic(@PathVariable Long id, @RequestParam BaseUser user) {
+        musicService.deleteMusic(id, user);
         return ResponseEntity.noContent().build();
     }
 }

@@ -2,6 +2,7 @@
 
     import java.util.List;
 
+import com.example.dz7Api.Models.base.BaseModel;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
@@ -15,7 +16,7 @@ import jakarta.persistence.CascadeType;
 
     @Entity
     @Table(name = "category")
-    public class Category {
+    public class Category extends BaseModel {
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         @Column(name = "id_category")

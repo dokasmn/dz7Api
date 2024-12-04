@@ -3,6 +3,8 @@ package com.example.dz7Api.Models;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.example.dz7Api.Models.base.BaseModel;
+
 // jakarta
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -16,7 +18,7 @@ import jakarta.persistence.JoinColumn;
 
 @Entity
 @Table(name = "playlist")
-public class Playlist {
+public class Playlist extends BaseModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_playlist")
