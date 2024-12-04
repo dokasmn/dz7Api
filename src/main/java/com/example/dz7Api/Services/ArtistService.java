@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.example.dz7Api.Models.Artist;
-import com.example.dz7Api.Models.Category;
 import com.example.dz7Api.Repositories.ArtistRepository;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -14,7 +13,7 @@ import jakarta.persistence.EntityNotFoundException;
 public class ArtistService {
     private final ArtistRepository artistRepository;
 
-    
+
     public ArtistService(ArtistRepository artistRepository){
         this.artistRepository = artistRepository;
     }

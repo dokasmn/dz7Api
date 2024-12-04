@@ -42,19 +42,19 @@ public class CategoryController {
     }
 
 
-    @GetMapping("/{categoryName}")
-    public ResponseEntity<Category> getCategory(@PathVariable String categoryName) {
-        if (categoryName == null || categoryName.isEmpty()) {
-            return ResponseEntity.badRequest().build();
-        }
+    // @GetMapping("/{categoryName}")
+    // public ResponseEntity<Category> getCategory(@PathVariable String categoryName) {
+    //     if (categoryName == null || categoryName.isEmpty()) {
+    //         return ResponseEntity.badRequest().build();
+    //     }
 
-        Optional<Category> foundCategory = categories.stream()
-        .filter(category -> category.getCategoryName().equalsIgnoreCase(categoryName))
-        .findFirst();
+    //     Optional<Category> foundCategory = categories.stream()
+    //     .filter(category -> category.getCategoryName().equalsIgnoreCase(categoryName))
+    //     .findFirst();
 
-        return foundCategory.map(ResponseEntity::ok)
-                    .orElse(ResponseEntity.notFound().build());
-    }
+    //     return foundCategory.map(ResponseEntity::ok)
+    //                 .orElse(ResponseEntity.notFound().build());
+    // }
 
 
     @PostMapping

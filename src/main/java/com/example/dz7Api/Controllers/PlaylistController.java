@@ -41,16 +41,16 @@ public class PlaylistController {
     }
 
 
-    @GetMapping("/{playlistName}")
-    public ResponseEntity<Playlist> getPlaylist(@PathVariable String playlistName) {
-        if (playlistName == null || playlistName.isEmpty()) {
-            return ResponseEntity.badRequest().build();
-        }
+    // @GetMapping("/{playlistName}")
+    // public ResponseEntity<Playlist> getPlaylist(@PathVariable String playlistName) {
+    //     if (playlistName == null || playlistName.isEmpty()) {
+    //         return ResponseEntity.badRequest().build();
+    //     }
 
-        Optional<Playlist> foundPlaylist = playlists.stream().filter(playlists -> playlists.getPlaylistName().equalsIgnoreCase(playlistName)).findFirst();
+    //     Optional<Playlist> foundPlaylist = playlists.stream().filter(playlists -> playlists.getPlaylistName().equalsIgnoreCase(playlistName)).findFirst();
 
-        return foundPlaylist.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
-    }
+    //     return foundPlaylist.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+    // }
 
 
     @PostMapping

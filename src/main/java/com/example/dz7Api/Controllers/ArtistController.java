@@ -43,19 +43,19 @@ public class ArtistController {
     }
 
 
-    @GetMapping("/{artistName}")
-    public ResponseEntity<Artist> getArtist(@PathVariable String artistName) {
-        if (artistName == null || artistName.isEmpty()) {
-            return ResponseEntity.badRequest().build();
-        }
+    // @GetMapping("/{artistName}")
+    // public ResponseEntity<Artist> getArtist(@PathVariable String artistName) {
+    //     if (artistName == null || artistName.isEmpty()) {
+    //         return ResponseEntity.badRequest().build();
+    //     }
 
-        Optional<Artist> foundArtist = artists.stream()
-        .filter(artist -> artist.getArtistName().equalsIgnoreCase(artistName))
-        .findFirst();
+    //     Optional<Artist> foundArtist = artists.stream()
+    //     .filter(artist -> artist.getArtistName().equalsIgnoreCase(artistName))
+    //     .findFirst();
 
-        return foundArtist.map(ResponseEntity::ok)
-                    .orElse(ResponseEntity.notFound().build());
-    }
+    //     return foundArtist.map(ResponseEntity::ok)
+    //                 .orElse(ResponseEntity.notFound().build());
+    // }
 
 
     @PostMapping
