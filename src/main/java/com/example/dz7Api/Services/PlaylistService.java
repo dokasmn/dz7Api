@@ -19,19 +19,23 @@ public class PlaylistService {
         this.playlistRepository = playlistRepository;
     }
 
+
     public List<Playlist> findAll() {
         return playlistRepository.findAll();
     }
 
+
     public Playlist savePlaylist(Playlist playlist){
         return playlistRepository.save(playlist);
     }
+
 
     public Playlist getPlaylistById(Long id){
         return playlistRepository.findById(id).orElseThrow(() ->
             new EntityNotFoundException("Playlist not found!"));
     }
 
+    
     public void deletePlaylist(Long id) {
         playlistRepository.deleteById(id);
     }

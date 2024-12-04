@@ -3,7 +3,7 @@ create database dz7api;
 use dz7api;
 
 INSERT INTO artist(artist_name, link_artist)
-VALUES 
+VALUES
 ("JPEGMAFIA", "youtube.com/@JPEGMAFIA"),
 ("LEALL", "youtube.com/@LEALL"),
 ("Playboi Carti", "youtube.com/channel/UC652oRUvX1onwrrZ8ADJRPw"),

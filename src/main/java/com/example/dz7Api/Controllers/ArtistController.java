@@ -2,15 +2,19 @@ package com.example.dz7Api.Controllers;
 
 import org.springframework.web.bind.annotation.*;
 
+// models
 import com.example.dz7Api.Models.Artist;
 import com.example.dz7Api.Services.ArtistService;
 
+// jakarta
 import jakarta.persistence.EntityNotFoundException;
 
+// java util
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+// spring
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 
@@ -23,16 +27,21 @@ public class ArtistController {
 
     private final ArtistService artistService;
 
+
     public ArtistController(ArtistService artistService){
         this.artistService = artistService;
     }
 
+
     @GetMapping
     public ResponseEntity<List<Artist>> listArtists (Model model) {
-        if (artists.isEmpty())
+        List<Artist> artists = artistService.findAll();
+        if (artists.isEmpty()) {
             return ResponseEntity.noContent().build();
+        }
         return ResponseEntity.ok(artists);
     }
+
 
     @GetMapping("/{artistName}")
     public ResponseEntity<Artist> getArtist(@PathVariable String artistName) {
@@ -48,6 +57,7 @@ public class ArtistController {
                     .orElse(ResponseEntity.notFound().build());
     }
 
+
     @PostMapping
     public ResponseEntity<Artist> saveArtist(@RequestBody Artist artist) {
         try {
@@ -58,6 +68,7 @@ public class ArtistController {
         }
     }
     
+
     @GetMapping("/{id}")
     public ResponseEntity<Artist> getArtistById(@PathVariable Long id) {
         try {
@@ -67,6 +78,7 @@ public class ArtistController {
             return ResponseEntity.notFound().build();
         }
     }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteArtist(@PathVariable Long id) {
