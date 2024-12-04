@@ -1,4 +1,4 @@
-package com.example.dz7Api.models;
+package com.example.dz7Api.Models;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -18,7 +18,6 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "artist")
 public class Artist {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idArtist;
@@ -40,31 +39,38 @@ public class Artist {
     
     public Artist() {}
 
+
     public Artist(Long idArtist, String artistName, String artistProfileLink) {
         this.idArtist = idArtist;
         this.artistName = artistName;
         this.artistProfileLink = artistProfileLink;
     }
 
+
     public Long getIdArtist() {
         return idArtist;
     }
+
 
     public void setIdArtist(Long idArtist) {
         this.idArtist = idArtist;
     }
 
+
     public String getArtistName() {
         return artistName;
     }
+
 
     public void setArtistName(String artistName) {
         this.artistName = artistName;
     }
 
+
     public String getArtistProfileLink() {
         return artistProfileLink;
     }
+
 
     public void setArtistProfileLink(String artistProfileLink) {
         this.artistProfileLink = artistProfileLink;

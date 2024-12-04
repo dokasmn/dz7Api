@@ -1,12 +1,12 @@
-package com.example.dz7Api.service;
+package com.example.dz7Api.Services;
 
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.example.dz7Api.models.Artist;
-import com.example.dz7Api.models.Category;
-import com.example.dz7Api.repository.ArtistRepository;
+import com.example.dz7Api.Models.Artist;
+import com.example.dz7Api.Models.Category;
+import com.example.dz7Api.Repositories.ArtistRepository;
 
 import jakarta.persistence.EntityNotFoundException;
 

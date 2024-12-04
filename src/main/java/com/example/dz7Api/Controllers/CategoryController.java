@@ -1,9 +1,9 @@
-package com.example.dz7Api.controller;
+package com.example.dz7Api.Controllers;
 
 import org.springframework.web.bind.annotation.*;
 
-import com.example.dz7Api.models.Category;
-import com.example.dz7Api.service.CategoryService;
+import com.example.dz7Api.Models.Category;
+import com.example.dz7Api.Services.CategoryService;
 
 import jakarta.persistence.EntityNotFoundException;
 

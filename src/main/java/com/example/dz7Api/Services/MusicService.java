@@ -1,9 +1,10 @@
-package com.example.dz7Api.service;
+package com.example.dz7Api.Services;
 
-import com.example.dz7Api.models.Artist;
-import com.example.dz7Api.models.Music;
-import com.example.dz7Api.repository.MusicRepository;
-import com.example.dz7Api.repository.ArtistRepository;
+import com.example.dz7Api.Models.Artist;
+import com.example.dz7Api.Models.Music;
+import com.example.dz7Api.Repositories.ArtistRepository;
+import com.example.dz7Api.Repositories.MusicRepository;
+
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 
@@ -19,7 +20,7 @@ public class MusicService {
     private final MusicRepository musicRepository;
     private final ArtistRepository artistRepository;
 
-    
+
     public MusicService(MusicRepository musicRepository, ArtistRepository artistRepository) {
         this.musicRepository = musicRepository;
         this.artistRepository = artistRepository;

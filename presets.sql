@@ -1,6 +1,8 @@
+create database dz7api;
+
 use dz7api;
 
-INSERT INTO artist(name_artist, link_artist)
+INSERT INTO artist(artist_name, link_artist)
 VALUES 
 ("JPEGMAFIA", "youtube.com/@JPEGMAFIA"),
 ("LEALL", "youtube.com/@LEALL"),
@@ -12,7 +14,7 @@ VALUES
 ("Frio", 23, -10),
 ("Calor", 45, 24);
 
-INSERT INTO music (music_country, duration_music, genre_music, link_music, name_music, id_category)
+INSERT INTO music (music_country, music_duration, genre_music, link_music, name_music, category_id)
 VALUES
 ('EUA', 168, 'Hip-hop', 'youtube.com/watch?v=F9JnxjP9cH4', 'I`ll be right there', 1),
 ('BRA', 149, 'Funk', 'youtube.com/watch?v=fC7REgp6WvE', 'SUV Prata', 2),
