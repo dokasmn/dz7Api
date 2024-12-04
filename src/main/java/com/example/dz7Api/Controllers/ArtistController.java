@@ -5,13 +5,12 @@ import org.springframework.web.bind.annotation.*;
 import com.example.dz7Api.Models.Artist;
 import com.example.dz7Api.Services.ArtistService;
 
-import jakarta.persistence.EntityNotFoundException;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.ui.Model;
 
 

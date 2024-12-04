@@ -45,10 +45,17 @@ public class Music {
     @Column(name = "genre_music")
     private String musicGenre;
 
+    @NotNull(message = "A música deve ter um país de origem!")
+    @Size(min = 1, message = "O país de origem da música não pode estar vazio")
+    @Column(name = "music_country")
+    private String musicCountry;
+
     @ManyToOne
     @JoinColumn(name = "idCategory", nullable = false)
     @NotNull(message = "A música deve possuir uma categoria!")
     private Category musicCategory;
+
+    
 
     // Pra gerar um construtor sem parametros pode-se usar o Lombok, conferir necessidade
     // @NoArgsConstructor

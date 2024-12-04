@@ -33,8 +33,13 @@ public class Category {
 
     @NotNull(message = "A temperatura da categoria não pode ser nula!")
     @Size(min = 1, message = "Temperatura inválida! Tente novamente.")
-    @Column(name = "temperature")
-    private int categoryTemperature;
+    @Column(name = "min_temperature")
+    private int minCategoryTemperature;
+
+    @NotNull(message = "A temperatura da categoria não pode ser nula!")
+    @Size(min = 1, message = "Temperatura inválida! Tente novamente.")
+    @Column(name = "max_temperature")
+    private int maxCategoryTemperature;
 
     @OneToMany(mappedBy="musicCategory")
     private List<Music> musics;
