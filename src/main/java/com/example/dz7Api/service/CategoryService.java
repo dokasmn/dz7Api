@@ -1,8 +1,11 @@
 package com.example.dz7Api.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.example.dz7Api.models.Category;
+import com.example.dz7Api.models.Music;
 import com.example.dz7Api.repository.CategoryRepository;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -13,6 +16,10 @@ public class CategoryService {
 
     public CategoryService(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
+    }
+
+    public List<Category> findAll() {
+        return categoryRepository.findAll();
     }
 
     public Category saveCategory(Category category) {

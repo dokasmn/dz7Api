@@ -29,9 +29,11 @@ public class MusicController {
 
 
     @GetMapping
-    public ResponseEntity<List<Music>> listMusics (Model model) {
-        if (musics.isEmpty())
+    public ResponseEntity<List<Music>> getAllMusics() {
+        List<Music> musics = musicService.findAll();
+        if (musics.isEmpty()) {
             return ResponseEntity.noContent().build();
+        }
         return ResponseEntity.ok(musics);
     }
 

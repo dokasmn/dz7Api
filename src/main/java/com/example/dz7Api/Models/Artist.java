@@ -3,6 +3,7 @@ package com.example.dz7Api.models;
 import java.util.HashSet;
 import java.util.Set;
 
+import jakarta.persistence.CascadeType;
 // jakarta
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -24,11 +25,13 @@ public class Artist {
 
     private String artistName;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(
-      name = "artist_music",
-      joinColumns = @JoinColumn(name = "artist_id"),
-      inverseJoinColumns = @JoinColumn(name = "music_id"))
+        name = "artist_music",
+        joinColumns = @JoinColumn(name = "artist_id"),
+        inverseJoinColumns = @JoinColumn(name = "music_id")
+    )
+
     private Set<Music> musics = new HashSet<>();
 
     @Column(name = "link_artist")

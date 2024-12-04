@@ -20,7 +20,7 @@ public class Playlist {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_playlist")
-    private int idPlaylist;
+    private Long idPlaylist;
     
     @Column(name = "name_playlist")
     private String playlistName;
@@ -37,17 +37,17 @@ public class Playlist {
     
     public Playlist(){}
     
-    public Playlist(int idPlaylist, String playlistName, Set<Music> musics) {
+    public Playlist(Long idPlaylist, String playlistName, Set<Music> musics) {
         this.idPlaylist = idPlaylist;
         this.playlistName = playlistName;
         this.musics = musics;
     }
     
-    public int getIdPlaylist() {
+    public Long getIdPlaylist() {
         return idPlaylist;
     }
     
-    public void setIdPlaylist(int idPlaylist) {
+    public void setIdPlaylist(Long idPlaylist) {
         this.idPlaylist = idPlaylist;
     }
     

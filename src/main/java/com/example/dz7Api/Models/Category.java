@@ -19,7 +19,7 @@ import jakarta.persistence.CascadeType;
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         @Column(name = "id_category")
-        private int idCategory;
+        private Long idCategory;
 
         @Column(name = "name_category")
         private String categoryName;
@@ -34,18 +34,18 @@ import jakarta.persistence.CascadeType;
 
         public Category(){}
 
-        public Category(int idCategory, String categoryName, int categoryTemperature, List<Music> musics) {
+        public Category(Long idCategory, String categoryName, int categoryTemperature, List<Music> musics) {
             this.idCategory = idCategory;
             this.categoryName = categoryName;
             this.categoryTemperature = categoryTemperature;
             this.musics = musics;
         }
 
-        public int getIdCategory() {
+        public Long getIdCategory() {
             return idCategory;
         }
 
-        public void setIdCategory(int idCategory) {
+        public void setIdCategory(Long idCategory) {
             this.idCategory = idCategory;
         }
 

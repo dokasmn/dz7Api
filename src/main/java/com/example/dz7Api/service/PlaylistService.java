@@ -1,7 +1,11 @@
 package com.example.dz7Api.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
+import com.example.dz7Api.models.Artist;
+import com.example.dz7Api.models.Category;
 import com.example.dz7Api.models.Playlist;
 import com.example.dz7Api.repository.PlaylistRepository;
 
@@ -13,6 +17,10 @@ public class PlaylistService {
 
     public PlaylistService(PlaylistRepository playlistRepository) {
         this.playlistRepository = playlistRepository;
+    }
+
+    public List<Playlist> findAll() {
+        return playlistRepository.findAll();
     }
 
     public Playlist savePlaylist(Playlist playlist){
