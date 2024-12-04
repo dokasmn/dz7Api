@@ -1,16 +1,19 @@
-package com.example.dz7Api.controller;
+package com.example.dz7Api.Controllers;
 
-import org.springframework.web.bind.annotation.*;
+// models
+import com.example.dz7Api.Models.Category;
+import com.example.dz7Api.Services.CategoryService;
 
-import com.example.dz7Api.models.Category;
-import com.example.dz7Api.service.CategoryService;
-
+// jakarta
 import jakarta.persistence.EntityNotFoundException;
 
+// java util
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+// spring
+import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 
@@ -23,30 +26,36 @@ public class CategoryController {
 
     private final CategoryService categoryService;
 
+
     public CategoryController(CategoryService categoryService){
         this.categoryService = categoryService;
     }
 
+
     @GetMapping
     public ResponseEntity<List<Category>> listCategories (Model model) {
-        if (categories.isEmpty())
+        List<Category> categories = categoryService.findAll();
+        if (categories.isEmpty()) {
             return ResponseEntity.noContent().build();
+        }
         return ResponseEntity.ok(categories);
     }
 
-    @GetMapping("/{categoryName}")
-    public ResponseEntity<Category> getCategory(@PathVariable String categoryName) {
-        if (categoryName == null || categoryName.isEmpty()) {
-            return ResponseEntity.badRequest().build();
-        }
 
-        Optional<Category> foundCategory = categories.stream()
-        .filter(category -> category.getCategoryName().equalsIgnoreCase(categoryName))
-        .findFirst();
+    // @GetMapping("/{categoryName}")
+    // public ResponseEntity<Category> getCategory(@PathVariable String categoryName) {
+    //     if (categoryName == null || categoryName.isEmpty()) {
+    //         return ResponseEntity.badRequest().build();
+    //     }
 
-        return foundCategory.map(ResponseEntity::ok)
-                    .orElse(ResponseEntity.notFound().build());
-    }
+    //     Optional<Category> foundCategory = categories.stream()
+    //     .filter(category -> category.getCategoryName().equalsIgnoreCase(categoryName))
+    //     .findFirst();
+
+    //     return foundCategory.map(ResponseEntity::ok)
+    //                 .orElse(ResponseEntity.notFound().build());
+    // }
+
 
     @PostMapping
     public ResponseEntity<Category> saveCategory(@RequestBody Category categories) {
@@ -58,6 +67,7 @@ public class CategoryController {
         }
     }
 
+
     @GetMapping("/{id}")
     public ResponseEntity<Category> getCategoryById(@PathVariable Long id) {
         try {
@@ -68,6 +78,7 @@ public class CategoryController {
         }
     }
 
+    
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteCategory(@PathVariable Long id) {
         categoryService.deleteCategory(id);

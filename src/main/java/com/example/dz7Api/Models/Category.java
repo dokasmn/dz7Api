@@ -1,4 +1,4 @@
-    package com.example.dz7Api.models;
+    package com.example.dz7Api.Models;
 
     import java.util.List;
 
@@ -19,13 +19,16 @@ import jakarta.persistence.CascadeType;
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         @Column(name = "id_category")
-        private int idCategory;
+        private Long idCategory;
 
         @Column(name = "name_category")
         private String categoryName;
 
-        @Column(name = "temperature")
-        private int categoryTemperature;
+        @Column(name = "min_temperature")
+        private int minCategoryTemperature;
+
+        @Column(name = "max_temperature")
+        private int maxCategoryTemperature;
 
         @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
         @JsonManagedReference
@@ -33,41 +36,62 @@ import jakarta.persistence.CascadeType;
 
 
         public Category(){}
+        
 
-        public Category(int idCategory, String categoryName, int categoryTemperature, List<Music> musics) {
+        public Category(Long idCategory, String categoryName, int minCategoryTemperature, int maxCategoryTemperature,
+                List<Music> musics) {
             this.idCategory = idCategory;
             this.categoryName = categoryName;
-            this.categoryTemperature = categoryTemperature;
+            this.minCategoryTemperature = minCategoryTemperature;
+            this.maxCategoryTemperature = maxCategoryTemperature;
             this.musics = musics;
         }
 
-        public int getIdCategory() {
+
+        public Long getIdCategory() {
             return idCategory;
         }
 
-        public void setIdCategory(int idCategory) {
+
+        public void setIdCategory(Long idCategory) {
             this.idCategory = idCategory;
         }
+
 
         public String getCategoryName() {
             return categoryName;
         }
 
+
         public void setCategoryName(String categoryName) {
             this.categoryName = categoryName;
         }
 
-        public int getCategoryTemperature() {
-            return categoryTemperature;
+
+        public int getMinCategoryTemperature() {
+            return minCategoryTemperature;
         }
 
-        public void setCategoryTemperature(int categoryTemperature) {
-            this.categoryTemperature = categoryTemperature;
+
+        public void setMinCategoryTemperature(int minCategoryTemperature) {
+            this.minCategoryTemperature = minCategoryTemperature;
         }
+
+
+        public int getMaxCategoryTemperature() {
+            return maxCategoryTemperature;
+        }
+
+
+        public void setMaxCategoryTemperature(int maxCategoryTemperature) {
+            this.maxCategoryTemperature = maxCategoryTemperature;
+        }
+
 
         public List<Music> getMusics() {
             return musics;
         }
+
 
         public void setMusics(List<Music> musics) {
             this.musics = musics;

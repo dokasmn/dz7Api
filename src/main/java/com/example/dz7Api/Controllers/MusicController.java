@@ -1,18 +1,21 @@
-package com.example.dz7Api.controller;
+package com.example.dz7Api.Controllers;
 
-import org.springframework.web.bind.annotation.*;
+// models
+import com.example.dz7Api.Models.Music;
 
-import com.example.dz7Api.models.Music;
+// services
+import com.example.dz7Api.Services.MusicService;
 
-import com.example.dz7Api.service.MusicService;
-
+// jakarta
 import jakarta.persistence.EntityNotFoundException;
 
+// java util
 import java.util.ArrayList;
 import java.util.List;
 
+// spring
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -30,9 +33,11 @@ public class MusicController {
 
 
     @GetMapping
-    public ResponseEntity<List<Music>> listMusics (Model model) {
-        if (musics.isEmpty())
+    public ResponseEntity<List<Music>> getAllMusics() {
+        List<Music> musics = musicService.findAll();
+        if (musics.isEmpty()) {
             return ResponseEntity.noContent().build();
+        }
         return ResponseEntity.ok(musics);
     }
 

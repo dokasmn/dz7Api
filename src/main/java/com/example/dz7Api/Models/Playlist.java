@@ -1,4 +1,4 @@
-package com.example.dz7Api.models;
+package com.example.dz7Api.Models;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -20,7 +20,7 @@ public class Playlist {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_playlist")
-    private int idPlaylist;
+    private Long idPlaylist;
     
     @Column(name = "name_playlist")
     private String playlistName;
@@ -33,35 +33,41 @@ public class Playlist {
         )
     private Set<Music> musics = new HashSet<>();
         
-        
     
     public Playlist(){}
     
-    public Playlist(int idPlaylist, String playlistName, Set<Music> musics) {
+
+    public Playlist(Long idPlaylist, String playlistName, Set<Music> musics) {
         this.idPlaylist = idPlaylist;
         this.playlistName = playlistName;
         this.musics = musics;
     }
     
-    public int getIdPlaylist() {
+
+    public Long getIdPlaylist() {
         return idPlaylist;
     }
     
-    public void setIdPlaylist(int idPlaylist) {
+
+    public void setIdPlaylist(Long idPlaylist) {
         this.idPlaylist = idPlaylist;
     }
     
+
     public String getPlaylistName() {
         return playlistName;
     }
+    
     
     public void setPlaylistName(String playlistName) {
         this.playlistName = playlistName;
     }
 
+
     public Set<Music> getMusics() {
         return musics;
     }
+
 
     public void setMusics(Set<Music> musics) {
         this.musics = musics;

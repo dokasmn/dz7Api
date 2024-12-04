@@ -1,9 +1,11 @@
-package com.example.dz7Api.service;
+package com.example.dz7Api.Services;
+
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.example.dz7Api.models.Playlist;
-import com.example.dz7Api.repository.PlaylistRepository;
+import com.example.dz7Api.Models.Playlist;
+import com.example.dz7Api.Repositories.PlaylistRepository;
 
 import jakarta.persistence.EntityNotFoundException;
 
@@ -15,15 +17,23 @@ public class PlaylistService {
         this.playlistRepository = playlistRepository;
     }
 
+
+    public List<Playlist> findAll() {
+        return playlistRepository.findAll();
+    }
+
+
     public Playlist savePlaylist(Playlist playlist){
         return playlistRepository.save(playlist);
     }
+
 
     public Playlist getPlaylistById(Long id){
         return playlistRepository.findById(id).orElseThrow(() ->
             new EntityNotFoundException("Playlist not found!"));
     }
 
+    
     public void deletePlaylist(Long id) {
         playlistRepository.deleteById(id);
     }
