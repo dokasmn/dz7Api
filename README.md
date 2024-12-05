@@ -8,7 +8,7 @@
 
 O DZ7API é um projeto de API desenvolvido para a Situação de Aprendizagem (SA) da unidade curricular de Programação Orientada a Objeto (POO).
 
-O objetivo da API em seu principal propósito é realizar a indicação de músicas com base na temperatura atual da localização do usuário, permitindo também a visualização de informações das músicas e artistas e criação de playlists.
+O principal objetivo da API é realizar a indicação de músicas com base na temperatura atual da localização do usuário, permitindo também a visualização de informações das músicas e artistas e criação de playlists.
 
 <h2>:pushpin: Estado atual</h2>
 
@@ -31,31 +31,31 @@ Para verificar sua versão do Java, abra seu prompt de comando (CMD) e utilize o
 java --version
 ```
 
-Este comando deve retornar a versão do Java instalada em seu compuador, caso o Java não seja encontrado, faça o download através do link abaixo:
+Este comando deve retornar a versão do Java instalada em seu computador, caso o Java não seja encontrado, faça o download através do link abaixo:
 
 :cd: [Java 23](https://jdk.java.net/23/) <br>
 :memo: [Tutorial de instalação](https://www.devmedia.com.br/instalacao-e-configuracao-do-pacote-java-jdk/23749)<br><br>
 
 **2. Maven 3.9+**<br>
-Para gerenciar as dependências utilizadas, este projeto utiliza o Maven na versão 3.9. Caso já possua a instalação, verique a versão utilizando o comando:
+Para gerenciar as dependências utilizadas, este projeto utiliza o Maven na versão 3.9. Caso já possua a instalação, verifique a versão utilizando o comando:
 
 ```bash
 mvn --version
 ```
 
-Caso não possuir o Maven instalado, faça o download através do link abaixo:
+Caso não possua o Maven instalado, faça o download através do link abaixo:
 
 :cd: [Maven 3.9.9](https://maven.apache.org/download.cgi) <br>
 :memo: [Documentação](https://maven.apache.org/install.html)<br><br>
 
 **3. MySQL 8.0.x**<br>
-Para realizar a gravação e gerenciamento dos dados, foi utilizado o MySQL Workbench Community. Caso já possua uma instalçao, verique a versão utilizando o comando:
+Para realizar a gravação e gerenciamento dos dados, foi utilizado o MySQL Workbench Community. Caso já possua uma instalação, verique a versão utilizando o comando:
 
 ```bash
 mysql --version
 ```
 
-Caso não possuir o MySQL instalado, faça o download através do link abaixo:
+Caso não possua o MySQL instalado, faça o download através do link abaixo:
 
 :cd: [MySQL](https://www.mysql.com/downloads/)<br>
 :memo: [Tutorial de instalação](https://www.alura.com.br/artigos/mysql-do-download-e-instalacao-ate-sua-primeira-tabela)<br><br>
@@ -102,8 +102,8 @@ Pressione a tecla enter e em seguida execute a configuração para a senha:
 set SPRING_DATASOURCE_PASSWORD=exemplo
 ```
 
-Após o passo acima, realize a instalação das extensões do Java no Visual Studio Code, para isso, localize o menu de extensões na barra lateral esquerda do VSCode ou use o atalho **Ctrl+Shift+X** para abri-lo.
-Pesquise por "Java" e realize a instalação do "Extension Pack for Java", essa extensão facilita a execução e outras funções dentro do VSCode.
+Após a conclusão do passo acima, realize a instalação das extensões do Java no Visual Studio Code, para isso, localize o menu de extensões na barra lateral esquerda do VSCode ou use o atalho **Ctrl+Shift+X** para abri-lo.
+Pesquise por "Java" e realize a instalação do "Extension Pack for Java", essa extensão facilita a execução e outras funções para a linguagem Java dentro do VSCode.
 
 <h2>:rocket: Criando o banco de dados e iniciando projeto </h2>
 
@@ -124,7 +124,7 @@ Se o projeto for executado com sucesso, você verá uma mensagem de retorno indi
 <h2>:earth_americas: Populando o banco de dados</h2>
 
 Para que os testes já possam ser realizados sem a necessidade de cadastrar vários dados, separamos um arquivo com o nome "presets.sql". Esse arquivo pode ser encontrado na pasta raíz do projeto.<br><br>
-Abra o MySQL Workbench com o banco de dados já criado e abra o arquivo "presets.sql", em seguida ececute as queries individualmente para evitar erros.
+Abra o MySQL Workbench com o banco de dados já criado e abra o arquivo "presets.sql", em seguida execute as queries individualmente para evitar erros.
 
 <h2>:spider_web:Acessando os endpoints</h2>
 
