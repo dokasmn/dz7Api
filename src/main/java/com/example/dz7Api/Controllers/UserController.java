@@ -10,7 +10,6 @@ import com.example.dz7Api.Models.base.BaseUser;
 import com.example.dz7Api.Repositories.UserRepository;
 import com.example.dz7Api.Services.UserService;
 import com.example.dz7Api.dto.UserDTO;
-import com.fasterxml.jackson.annotation.JsonInclude;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;

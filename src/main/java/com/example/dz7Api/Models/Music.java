@@ -1,15 +1,11 @@
 package com.example.dz7Api.Models;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
-import org.apache.catalina.User;
 
 import com.example.dz7Api.Models.base.BaseModel;
-import com.example.dz7Api.Models.base.BaseUser;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -27,6 +23,7 @@ import jakarta.persistence.Table;
 public class Music extends BaseModel {
 
     @Id
+    @JsonIgnore
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_music")
     private Long idMusic;

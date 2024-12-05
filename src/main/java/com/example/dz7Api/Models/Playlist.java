@@ -5,6 +5,7 @@ import java.util.Set;
 
 import com.example.dz7Api.Models.base.BaseModel;
 import com.example.dz7Api.Models.base.BaseUser;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
 
@@ -13,6 +14,7 @@ import jakarta.persistence.*;
 public class Playlist extends BaseModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     private Long id;
     
     @Column(name = "name_playlist")

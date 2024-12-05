@@ -3,6 +3,7 @@ package com.example.dz7Api.Models;
 import java.util.List;
 
 import com.example.dz7Api.Models.base.BaseModel;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
@@ -19,6 +20,7 @@ import jakarta.persistence.Table;
 public class Category extends BaseModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     @Column(name = "id_category")
     private Long idCategory;
 
@@ -33,6 +35,7 @@ public class Category extends BaseModel {
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
+    @JsonIgnore
     private List<Music> musics;
 
 
