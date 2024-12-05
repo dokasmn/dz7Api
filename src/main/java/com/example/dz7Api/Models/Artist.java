@@ -1,48 +1,20 @@
-package com.example.dz7api.models;
+package com.example.dz7Api.Models;
 
-// java util
 import java.util.HashSet;
 import java.util.Set;
 
+
+import com.example.dz7Api.Models.base.BaseUser;
+
+
 // jakarta
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
-import jakarta.persistence.JoinColumn;
-
-// lombok
-import lombok.Getter;
-import lombok.Setter;
-import lombok.NoArgsConstructor;
 
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@Table(name = "artist")
-public class Artist {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_artist")
-    private int idArtist;
-
-    @Column(name = "name_artist")
-    @NotNull(message = "O artista deve ter um nome!")
-    @Size(min = 1, message = "Nome inválido! Tente novamente.")
-    private String artistName;
-
-    @Column(name = "link_artist")
-    @NotNull(message = "O artista deve ter um link para o perfil!")
-    @Size(min = 1, message = "Link inválido! tente novamente.")
-    private String artistProfileLink;
+public class Artist extends BaseUser {
 
     @ManyToMany
     @JoinTable(
@@ -50,5 +22,28 @@ public class Artist {
         joinColumns = @JoinColumn(name = "artist_id"),
         inverseJoinColumns = @JoinColumn(name = "music_id")
     )
-    private Set<Music> artistMusics = new HashSet<>();
+    private Set<Music> musics;
+
+
+    public Artist(String username, String email, String password) {
+        super(username, email, password);
+    }
+
+
+    @Override
+    public String getRole() {
+        return "Artist";
+    }
+
+    
+    public void addMusic(Music music) {
+        if (music != null) {
+            musics.add(music);
+        }
+    }
+
+    
+    public void removeMusic(Music music) {
+        musics.remove(music);
+    }
 }
