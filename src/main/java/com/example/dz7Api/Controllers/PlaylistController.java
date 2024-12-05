@@ -50,7 +50,7 @@ public class PlaylistController {
             return ResponseEntity.notFound().build();
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body(null);
-        }c
+        }
     }
 
     
