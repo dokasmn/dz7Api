@@ -10,11 +10,9 @@ import jakarta.persistence.EntityNotFoundException;
 // java util
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 // spring
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -32,8 +30,8 @@ public class PlaylistController {
 
 
     @GetMapping
-    public ResponseEntity<List<Playlist>> listPlaylists(Model model){
-        List<Playlist> playlists = playlistService.findAll();
+    public ResponseEntity<List<Playlist>> listPlaylists(@RequestParam Long userId) {
+        List<Playlist> playlists = playlistService.findAll(userId);
         if (playlists.isEmpty()) {
             return ResponseEntity.noContent().build();
         }
@@ -41,24 +39,46 @@ public class PlaylistController {
     }
 
 
-    // @GetMapping("/{playlistName}")
-    // public ResponseEntity<Playlist> getPlaylist(@PathVariable String playlistName) {
-    //     if (playlistName == null || playlistName.isEmpty()) {
-    //         return ResponseEntity.badRequest().build();
-    //     }
-
-    //     Optional<Playlist> foundPlaylist = playlists.stream().filter(playlists -> playlists.getPlaylistName().equalsIgnoreCase(playlistName)).findFirst();
-
-    //     return foundPlaylist.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
-    // }
-
-
-    @PostMapping
-    public ResponseEntity<Playlist> savePlaylist(@RequestBody Playlist playlist){
+    @PostMapping("/{playlistId}/add-music/{musicId}")
+    public ResponseEntity<Playlist> addMusicToPlaylist(
+            @PathVariable Long playlistId,
+            @PathVariable Long musicId) {
         try {
-            Playlist savedPlaylist = playlistService.savePlaylist(playlist);
+            Playlist updatedPlaylist = playlistService.addMusicToPlaylist(playlistId, musicId);
+            return ResponseEntity.ok(updatedPlaylist);
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(null);
+        }c
+    }
+
+    
+    @DeleteMapping("/{playlistId}/remove-music/{musicId}")
+    public ResponseEntity<Playlist> removeMusicFromPlaylist(
+            @PathVariable Long playlistId,
+            @PathVariable Long musicId) {
+        try {
+            Playlist updatedPlaylist = playlistService.removeMusicFromPlaylist(playlistId, musicId);
+            return ResponseEntity.ok(updatedPlaylist);
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(null);
+        }
+    }
+
+   
+    @PutMapping("/{playlistId}")
+    public ResponseEntity<Playlist> updatePlaylist(
+            @PathVariable Long playlistId,
+            @RequestBody Playlist updatedPlaylist) {
+        try {
+            Playlist savedPlaylist = playlistService.updatePlaylist(playlistId, updatedPlaylist);
             return ResponseEntity.ok(savedPlaylist);
-        } catch(IllegalArgumentException e) {
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body(null);
         }
     }
@@ -72,13 +92,6 @@ public class PlaylistController {
         } catch(EntityNotFoundException e) {
             return ResponseEntity.notFound().build();
         }
-    }
-
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletePlaylist(@PathVariable Long id) {
-        playlistService.deletePlaylist(id);
-        return ResponseEntity.noContent().build();
     }
 
 }

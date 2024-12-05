@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.example.dz7Api.Models.base.BaseModel;
+import com.example.dz7Api.Models.base.BaseUser;
 
 // jakarta
 import jakarta.persistence.Column;
@@ -13,6 +14,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.JoinColumn;
 
@@ -34,11 +36,15 @@ public class Playlist extends BaseModel {
         inverseJoinColumns = @JoinColumn(name = "music_id")
         )
     private Set<Music> musics = new HashSet<>();
-        
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private BaseUser user;
+    
     
     public Playlist(){}
     
-
+    
     public Playlist(Long idPlaylist, String playlistName, Set<Music> musics) {
         this.idPlaylist = idPlaylist;
         this.playlistName = playlistName;
@@ -50,12 +56,12 @@ public class Playlist extends BaseModel {
         return idPlaylist;
     }
     
-
+    
     public void setIdPlaylist(Long idPlaylist) {
         this.idPlaylist = idPlaylist;
     }
     
-
+    
     public String getPlaylistName() {
         return playlistName;
     }
@@ -64,14 +70,24 @@ public class Playlist extends BaseModel {
     public void setPlaylistName(String playlistName) {
         this.playlistName = playlistName;
     }
-
-
+    
+    
     public Set<Music> getMusics() {
         return musics;
     }
-
-
+    
+    
     public void setMusics(Set<Music> musics) {
         this.musics = musics;
+    }
+
+
+    public BaseUser getUser() {
+        return user;
+    }
+    
+    
+    public void setUser(BaseUser user) {
+        this.user = user;
     }
 }
