@@ -8,6 +8,10 @@ import jakarta.persistence.Table;
 @Entity
 public class StandardUser extends BaseUser {
 
+
+    public StandardUser() {}
+
+
     public StandardUser(String username, String email, String password) {
         super(username, email, password);
     }

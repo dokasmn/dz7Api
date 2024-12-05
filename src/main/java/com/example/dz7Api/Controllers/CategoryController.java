@@ -1,39 +1,31 @@
 package com.example.dz7Api.Controllers;
 
-// models
 import com.example.dz7Api.Models.Category;
+import com.example.dz7Api.Models.base.BaseUser;
+import com.example.dz7Api.Repositories.UserRepository;
 import com.example.dz7Api.Services.CategoryService;
-
-// jakarta
 import jakarta.persistence.EntityNotFoundException;
-
-// java util
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
-// spring
-import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/category")
 public class CategoryController {
-    
-    List<Category> categories = new ArrayList<>();
 
     private final CategoryService categoryService;
+    private final UserRepository userRepository;
 
 
-    public CategoryController(CategoryService categoryService){
+    public CategoryController(CategoryService categoryService, UserRepository userRepository) {
         this.categoryService = categoryService;
+        this.userRepository = userRepository;
     }
 
 
     @GetMapping
-    public ResponseEntity<List<Category>> listCategories (Model model) {
+    public ResponseEntity<List<Category>> listCategories() {
         List<Category> categories = categoryService.findAll();
         if (categories.isEmpty()) {
             return ResponseEntity.noContent().build();
@@ -54,19 +46,39 @@ public class CategoryController {
 
 
     @PostMapping
-    public ResponseEntity<Category> saveCategory(@RequestBody Category categories) {
+    public ResponseEntity<Category> saveCategory(@RequestBody Category category, @RequestParam Long userId, @RequestParam String userPassword) {
         try {
-            Category savedCategory = categoryService.saveCategory(categories);
-            return ResponseEntity.ok(savedCategory);
+            BaseUser user = userRepository.findById(userId)
+                    .orElseThrow(() -> new EntityNotFoundException("Usuário não encontrado"));
+            if (!user.getUserPassword().equals(userPassword)) {
+                return ResponseEntity.status(401).build();
+            }
+
+            if (!user.getRole().equals("Admin")) {
+                return ResponseEntity.status(403).build();
+            }
+
+            Category savedCategory = categoryService.saveCategory(category);
+            return ResponseEntity.status(201).body(savedCategory);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body(null);
         }
     }
-    
+
 
     @PutMapping("/{id}")
-    public ResponseEntity<Category> updateCategory(@PathVariable Long id, @RequestBody Category category) {
+    public ResponseEntity<Category> updateCategory(@PathVariable Long id, @RequestBody Category category, @RequestParam Long userId, @RequestParam String userPassword) {
         try {
+            BaseUser user = userRepository.findById(userId)
+                    .orElseThrow(() -> new EntityNotFoundException("Usuário não encontrado"));
+            if (!user.getUserPassword().equals(userPassword)) {
+                return ResponseEntity.status(401).build();
+            }
+
+            if (!user.getRole().equals("Admin")) {
+                return ResponseEntity.status(403).build();
+            }
+
             Category updatedCategory = categoryService.updateCategory(id, category);
             return ResponseEntity.ok(updatedCategory);
         } catch (EntityNotFoundException e) {
@@ -76,9 +88,22 @@ public class CategoryController {
 
     
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteCategory(@PathVariable Long id) {
-        categoryService.deleteCategory(id);
-        return ResponseEntity.noContent().build();
-    }
+    public ResponseEntity<Void> deleteCategory(@PathVariable Long id, @RequestParam Long userId, @RequestParam String userPassword) {
+        try {
+            BaseUser user = userRepository.findById(userId)
+                    .orElseThrow(() -> new EntityNotFoundException("Usuário não encontrado"));
+            if (!user.getUserPassword().equals(userPassword)) {
+                return ResponseEntity.status(401).build();
+            }
 
+            if (!user.getRole().equals("Admin")) {
+                return ResponseEntity.status(403).build();
+            }
+
+            categoryService.deleteCategory(id);
+            return ResponseEntity.noContent().build();
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }

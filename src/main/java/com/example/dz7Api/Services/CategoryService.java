@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.example.dz7Api.Models.Category;
-import com.example.dz7Api.Models.Music;
 import com.example.dz7Api.Repositories.CategoryRepository;
 
 import jakarta.persistence.EntityNotFoundException;

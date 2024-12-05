@@ -30,7 +30,7 @@ VALUES
 
 
 
-INSERT INTO artist_has_music(artist_id, music_id)
+INSERT INTO music_has_artist (artist_id, music_id)
 VALUES
 (1, 1),
 (2, 2),

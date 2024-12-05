@@ -30,6 +30,13 @@ public abstract class BaseUser extends BaseModel {
         this.email = email;
         this.userPassword = userPassword;
     }
+
+
+    public void validatePassword(String passwordToCheck) {
+        if (!this.userPassword.equals(passwordToCheck)) {
+            throw new SecurityException("Unauthorized access");
+        }
+    }
     
 
     public abstract String getRole();
