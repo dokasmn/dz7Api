@@ -141,7 +141,7 @@ http://localhost:8080/swagger-ui/index.html
 Acessando cada um dos métodos, você poderá testar todos os endpoints para todos os controllers! <br><br>
 
 > [!NOTE]  
-> Para endpointes com necessidade de autenticação do usuário, cadastramos um usuário com privilégios de administrador.
+> Para endpoints com necessidade de autenticação do usuário, cadastramos um usuário com privilégios de administrador.
 > Para isso, preencha o ID com o número 5 e a senha com "senha123".
 
 **Exemplo de necessidade de autenticação.**
