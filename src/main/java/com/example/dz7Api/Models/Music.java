@@ -1,5 +1,6 @@
 package com.example.dz7Api.Models;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -56,7 +57,7 @@ public class Music extends BaseModel {
         joinColumns = @JoinColumn(name = "music_id"),
         inverseJoinColumns = @JoinColumn(name = "artist_id")
     )
-    private List<Artist> owners;
+    private List<Artist> owners = new ArrayList<>();
     
 
     public Music(){}
