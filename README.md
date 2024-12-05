@@ -144,6 +144,10 @@ Acessando cada um dos métodos, você poderá testar todos os endpoints para tod
 > Para endpointes com necessidade de autenticação do usuário, cadastramos um usuário com privilégios de administrador.
 > Para isso, preencha o ID com o número 5 e a senha com "senha123".
 
+**Exemplo de necessidade de autenticação.**
+
+![Swagger](img/userauth.png)<br>
+
 <h2>:computer:Responsáveis pelo projeto</h2>
 
 [Eliel Schubert](https://github.com/elielschubert/) e [Cauan Moreira](https://github.com/dokasmn/).
