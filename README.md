@@ -116,7 +116,7 @@ CREATE DATABASE dz7api;
 Depois, voltando ao VSCode, acesse a pasta "src", em seguida a pasta "java" e abra o arquivo "Dz7ApiApplication.java" e execute o mesmo, ou execute pelo terminal com o comando:
 
 ```bash
-mvn spring:boot run
+mvn spring-boot:run
 ```
 
 Se o projeto for executado com sucesso, você verá uma mensagem de retorno indicando que a build foi bem sucedida!
@@ -138,7 +138,11 @@ http://localhost:8080/swagger-ui/index.html
 
 ![Swagger](img/swagger.png)<br>
 
-Acessando cada um dos métodos, você poderá testar todos os endpoints para todos os controllers! <br>
+Acessando cada um dos métodos, você poderá testar todos os endpoints para todos os controllers! <br><br>
+
+> [!NOTE]  
+> Para endpointes com necessidade de autenticação do usuário, cadastramos um usuário com privilégios de administrador.
+> Para isso, preencha o ID com o número 5 e a senha com "senha123".
 
 <h2>:computer:Responsáveis pelo projeto</h2>
 
