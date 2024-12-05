@@ -20,6 +20,10 @@ public abstract class BaseUser extends BaseModel {
     private String email;
     private String userPassword;
 
+
+    public BaseUser() {
+    }
+
     
     public BaseUser(String username, String email, String userPassword) {
         this.username = username;
@@ -27,7 +31,18 @@ public abstract class BaseUser extends BaseModel {
         this.userPassword = userPassword;
     }
     
+
     public abstract String getRole();
+    
+    
+    public Long getId() {
+        return id;
+    }
+    
+
+    public void setId(Long id) {
+        this.id = id;
+    }
     
 
     public String getUsername() {
@@ -48,16 +63,17 @@ public abstract class BaseUser extends BaseModel {
     public void setEmail(String email) {
         this.email = email;
     }
+    
 
-
-    public String getPassword() {
+    public String getUserPassword() {
         return userPassword;
     }
     
 
-    public void setPassword(String password) {
-        this.userPassword = password;
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
     }
+
 }
 
 

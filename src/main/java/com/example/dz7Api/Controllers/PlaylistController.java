@@ -27,8 +27,8 @@ public class PlaylistController {
     public PlaylistController(PlaylistService playlistService){
         this.playlistService = playlistService;
     }
-
-
+    
+    
     @GetMapping
     public ResponseEntity<List<Playlist>> listPlaylists(@RequestParam Long userId) {
         List<Playlist> playlists = playlistService.findAll(userId);
@@ -36,6 +36,17 @@ public class PlaylistController {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok(playlists);
+    }
+
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Playlist> getPlaylistById(@PathVariable Long id) {
+        try {
+            Playlist playlist = playlistService.getPlaylistById(id);
+            return ResponseEntity.ok(playlist);
+        } catch(EntityNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
 
@@ -52,8 +63,23 @@ public class PlaylistController {
             return ResponseEntity.badRequest().body(null);
         }
     }
-
     
+
+    @PutMapping("/{playlistId}")
+    public ResponseEntity<Playlist> updatePlaylist(
+            @PathVariable Long playlistId,
+            @RequestBody Playlist updatedPlaylist) {
+        try {
+            Playlist savedPlaylist = playlistService.updatePlaylist(playlistId, updatedPlaylist);
+            return ResponseEntity.ok(savedPlaylist);
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(null);
+        }
+    }
+    
+
     @DeleteMapping("/{playlistId}/remove-music/{musicId}")
     public ResponseEntity<Playlist> removeMusicFromPlaylist(
             @PathVariable Long playlistId,
@@ -68,30 +94,10 @@ public class PlaylistController {
         }
     }
 
-   
-    @PutMapping("/{playlistId}")
-    public ResponseEntity<Playlist> updatePlaylist(
-            @PathVariable Long playlistId,
-            @RequestBody Playlist updatedPlaylist) {
-        try {
-            Playlist savedPlaylist = playlistService.updatePlaylist(playlistId, updatedPlaylist);
-            return ResponseEntity.ok(savedPlaylist);
-        } catch (EntityNotFoundException e) {
-            return ResponseEntity.notFound().build();
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body(null);
-        }
-    }
 
-
-    @GetMapping("/{id}")
-    public ResponseEntity<Playlist> getPlaylistById(@PathVariable Long id) {
-        try {
-            Playlist playlist = playlistService.getPlaylistById(id);
-            return ResponseEntity.ok(playlist);
-        } catch(EntityNotFoundException e) {
-            return ResponseEntity.notFound().build();
-        }
+    @DeleteMapping("/{playlistId}")
+    public void deletePlaylist(@PathVariable Long playlistId, @RequestParam Long userId) {
+        playlistService.deletePlaylist(playlistId, userId);
     }
 
 }

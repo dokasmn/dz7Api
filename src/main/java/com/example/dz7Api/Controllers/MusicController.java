@@ -29,7 +29,6 @@ public class MusicController {
     private final MusicService musicService;
 
     
-    @Autowired
     public MusicController(MusicService musicService) {
         this.musicService = musicService;
     }
@@ -54,22 +53,6 @@ public class MusicController {
             return ResponseEntity.notFound().build();
         }
     }
-
-
-
-    // @GetMapping("/{musicName}")
-    // public ResponseEntity<Music> getMusic(@PathVariable String musicName) {
-    //     if (musicName == null || musicName.isEmpty()) {
-    //         return ResponseEntity.badRequest().build();
-    //     }
-
-    //     Optional<Music> foundMusic = musics.stream()
-    //     .filter(music -> music.getMusicName().equalsIgnoreCase(musicName))
-    //     .findFirst();
-
-    //     return foundMusic.map(ResponseEntity::ok)
-    //                 .orElse(ResponseEntity.notFound().build());
-    // }
 
 
     @PostMapping

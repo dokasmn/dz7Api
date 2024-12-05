@@ -36,6 +36,17 @@ public class CategoryService {
     }
 
 
+    public Category updateCategory(Long id, Category category) {
+        Category existingCategory = categoryRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Category not found!"));
+        existingCategory.setCategoryName(category.getCategoryName());
+        existingCategory.setMinCategoryTemperature(category.getMinCategoryTemperature());
+        existingCategory.setMaxCategoryTemperature(category.getMaxCategoryTemperature());
+        existingCategory.setMusics(category.getMusics());
+        return categoryRepository.save(existingCategory);
+    }
+
+
     public void deleteCategory(Long id) {
         categoryRepository.deleteById(id);
     }

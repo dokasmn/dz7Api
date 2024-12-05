@@ -11,7 +11,7 @@ public class Admin extends BaseUser {
         super(username, email, password);
     }
 
-   
+
     @Override
     public String getRole() {
         return "Admin";

@@ -42,19 +42,15 @@ public class CategoryController {
     }
 
 
-    // @GetMapping("/{categoryName}")
-    // public ResponseEntity<Category> getCategory(@PathVariable String categoryName) {
-    //     if (categoryName == null || categoryName.isEmpty()) {
-    //         return ResponseEntity.badRequest().build();
-    //     }
-
-    //     Optional<Category> foundCategory = categories.stream()
-    //     .filter(category -> category.getCategoryName().equalsIgnoreCase(categoryName))
-    //     .findFirst();
-
-    //     return foundCategory.map(ResponseEntity::ok)
-    //                 .orElse(ResponseEntity.notFound().build());
-    // }
+    @GetMapping("/{id}")
+    public ResponseEntity<Category> getCategoryById(@PathVariable Long id) {
+        try {
+            Category category = categoryService.getCategoryById(id);
+            return ResponseEntity.ok(category);
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
 
     @PostMapping
@@ -66,13 +62,13 @@ public class CategoryController {
             return ResponseEntity.badRequest().body(null);
         }
     }
+    
 
-
-    @GetMapping("/{id}")
-    public ResponseEntity<Category> getCategoryById(@PathVariable Long id) {
+    @PutMapping("/{id}")
+    public ResponseEntity<Category> updateCategory(@PathVariable Long id, @RequestBody Category category) {
         try {
-            Category category = categoryService.getCategoryById(id);
-            return ResponseEntity.ok(category);
+            Category updatedCategory = categoryService.updateCategory(id, category);
+            return ResponseEntity.ok(updatedCategory);
         } catch (EntityNotFoundException e) {
             return ResponseEntity.notFound().build();
         }

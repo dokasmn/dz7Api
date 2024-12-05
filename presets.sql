@@ -1,20 +1,18 @@
 
 use dz7api;
 
--- Inserindo artistas na tabela `users` (BaseUser)
-INSERT INTO users (username, email, password, created_at, updated_at, dtype)
+INSERT INTO users (username, email, user_password, created_at, updated_at, dtype)
 VALUES
-('JPEGMAFIA', 'jpegmafia@email.com', 'senha123', NOW(), NOW(), 'Artist'),
-('LEALL', 'leall@email.com', 'senha123', NOW(), NOW(), 'Artist'),
-('Playboi Carti', 'carti@email.com', 'senha123', NOW(), NOW(), 'Artist'),
-('Sain', 'sain@email.com', 'senha123', NOW(), NOW(), 'Artist');
+    ('JPEGMAFIA', 'jpegmafia@email.com', 'senha123', NOW(), NOW(), 'Artist'),
+    ('LEALL', 'leall@email.com', 'senha123', NOW(), NOW(), 'Artist'),
+    ('Playboi Carti', 'carti@email.com', 'senha123', NOW(), NOW(), 'Artist'),
+    ('Sain', 'sain@email.com', 'senha123', NOW(), NOW(), 'Artist');
 
 		
 INSERT INTO category (name_category, max_temperature, min_temperature, created_at, updated_at)
 VALUES
     ("Frio", 23, -10, NOW(), NOW()),
     ("Calor", 45, 24, NOW(), NOW());
-
 
 
 INSERT INTO music (music_country, music_duration, genre_music, link_music, name_music, category_id, created_at, updated_at)

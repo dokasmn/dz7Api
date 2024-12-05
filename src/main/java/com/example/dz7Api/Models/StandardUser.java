@@ -17,6 +17,5 @@ public class StandardUser extends BaseUser {
         return "Standard";
     }
 
-    public void likeMusic(Music music) {
-    }
+    public void likeMusic(Music music) {}
 }

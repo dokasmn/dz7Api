@@ -25,7 +25,7 @@ public class PlaylistService {
 
 
     public List<Playlist> findAll(Long userId) {
-        return playlistRepository.findAllByUserId(userId);
+        return playlistRepository.findAllByPlaylistUserId(userId);
     }
 
 
@@ -35,7 +35,7 @@ public class PlaylistService {
 
 
     public Playlist getPlaylistById(Long playlistId, Long userId) {
-        return playlistRepository.findByIdAndUserId(playlistId, userId)
+        return playlistRepository.findByIdAndPlaylistUserId(playlistId, userId)
                 .orElseThrow(() -> new EntityNotFoundException("Playlist not found!"));
     }
 
@@ -52,7 +52,7 @@ public class PlaylistService {
         Music music = musicRepository.findById(musicId)
                 .orElseThrow(() -> new EntityNotFoundException("Music not found!"));
 
-        playlist.getMusics().add(music);
+        playlist.getPlaylistMusics().add(music);
         return playlistRepository.save(playlist);
     }
 
@@ -63,7 +63,7 @@ public class PlaylistService {
         Music music = musicRepository.findById(musicId)
                 .orElseThrow(() -> new EntityNotFoundException("Music not found!"));
 
-        playlist.getMusics().remove(music);
+        playlist.getPlaylistMusics().remove(music);
         return playlistRepository.save(playlist);
     }
 
@@ -74,5 +74,12 @@ public class PlaylistService {
 
         existingPlaylist.setPlaylistName(updatedPlaylist.getPlaylistName());
         return playlistRepository.save(existingPlaylist);
+    }
+
+
+    public void deletePlaylist(Long playlistId, Long userId) {
+        Playlist playlist = playlistRepository.findByIdAndPlaylistUserId(playlistId, userId)
+                .orElseThrow(() -> new EntityNotFoundException("Playlist not found or you don't have permission to delete it"));
+        playlistRepository.delete(playlist);
     }
 }
