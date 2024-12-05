@@ -62,7 +62,7 @@ Caso não possua o MySQL instalado, faça o download através do link abaixo:
 
 <h2>:arrow_down: Clonando o projeto</h2>
 
-Para iniciar, você necesita possuir uma IDE para executar esse projeto, caso não possua, realize a instalação do Visual Studio Code (VSCode) pelo link abaixo:
+Para iniciar, você necessita possuir uma IDE para executar esse projeto, caso não possua, realize a instalação do Visual Studio Code (VSCode) pelo link abaixo:
 
 :cd: [Visual Studio Code](https://code.visualstudio.com/Download)<br>
 :memo: [Tutorial de instalação](https://www.devmedia.com.br/guia-completo-do-visual-studio-code/43827)<br><br>
