@@ -134,9 +134,20 @@ Por fim, acesse os endpoints através da URL do Swagger para testar os endpoints
 http://localhost:8080/swagger-ui/index.html
 ```
 
-**Exemplo da interface do Swagger**
+**Exemplo da interface do Swagger:**
 
-![Swagger](img\swagger.png)
+![Swagger](img/swagger.png)<br>
+
+Acessando cada um dos métodos, você poderá testar todos os endpoints para todos os controllers! <br>
+
+<h2>:computer:Responsáveis pelo projeto</h2>
+
+[Eliel Schubert](https://github.com/elielschubert/) e [Cauan Moreira](https://github.com/dokasmn/).
+
+
+
+
+
 
 
 
