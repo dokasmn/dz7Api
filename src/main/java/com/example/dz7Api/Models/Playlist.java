@@ -30,7 +30,9 @@ public class Playlist extends BaseModel {
     @JoinColumn(name = "user_id")
     private BaseUser playlistUser;
 
+    
     public Playlist() {}
+
 
     public Playlist(String playlistName, Set<Music> playlistMusics, BaseUser playlistUser) {
         this.playlistName = playlistName;
@@ -38,7 +40,7 @@ public class Playlist extends BaseModel {
         this.playlistUser = playlistUser;
     }
 
-    // Getters e Setters
+
     public Long getId() {
         return id;
     }

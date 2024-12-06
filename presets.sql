@@ -23,10 +23,10 @@ VALUES
     ('BRA', 173, 'Hip-hop', 'youtube.com/watch?v=LCyrRfi2-9k', 'Aquelas Coisas Mais Pra Frente', 2, NOW(), NOW());
 
 
-INSERT INTO playlist (name_playlist, created_at, updated_at)
+INSERT INTO playlist (name_playlist, created_at, updated_at, user_id)
 VALUES
-    ('Ritmo de verão', NOW(), NOW()),
-    ('Batidas do inverno', NOW(), NOW());
+    ('Ritmo de verão', NOW(), NOW(), 1),
+    ('Batidas do inverno', NOW(), NOW(), 2);
 
 
 

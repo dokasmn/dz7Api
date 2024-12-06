@@ -3,9 +3,11 @@ package com.example.dz7Api.Controllers;
 import com.example.dz7Api.Models.Music;
 import com.example.dz7Api.Models.Playlist;
 import com.example.dz7Api.Models.base.BaseUser;
-import com.example.dz7Api.Repositories.MusicRepository;
 import com.example.dz7Api.Repositories.UserRepository;
+import com.example.dz7Api.Services.MusicService;
 import com.example.dz7Api.Services.PlaylistService;
+import com.example.dz7Api.Services.UserService;
+import com.example.dz7Api.dto.PlaylistCreateDTO;
 import com.example.dz7Api.dto.PlaylistDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,6 +18,7 @@ import jakarta.persistence.EntityNotFoundException;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api/playlist")
@@ -26,6 +29,12 @@ public class PlaylistController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private MusicService musicService;
 
 
     @GetMapping
@@ -49,17 +58,34 @@ public class PlaylistController {
     }
 
 
-    @PostMapping("/{playlistId}/add-music/{musicId}")
-    public ResponseEntity<Playlist> addMusicToPlaylist(
-            @PathVariable Long playlistId,
-            @PathVariable Long musicId) {
+    @PutMapping("/{playlistId}/addMusic/{musicId}")
+    public ResponseEntity<Playlist> addMusicToPlaylist(@PathVariable Long playlistId,
+                                                        @PathVariable Long musicId,
+                                                        @RequestParam Long userId,
+                                                        @RequestParam String userPassword) {
         try {
-            Playlist updatedPlaylist = playlistService.addMusicToPlaylist(playlistId, musicId);
-            return ResponseEntity.ok(updatedPlaylist);
+            BaseUser user = userService.getUserById(userId);
+            if (!user.getUserPassword().equals(userPassword)) {
+                return ResponseEntity.status(401).build();
+            }
+            Playlist playlist = playlistService.getPlaylistById(playlistId);
+
+            if (playlist.getPlaylistUser().getId().equals(userId)) {
+                Music music = musicService.getMusicById(musicId);
+                
+
+                Set<Music> currentMusics = playlist.getPlaylistMusics();
+                currentMusics.add(music);
+                playlist.setPlaylistMusics(currentMusics);
+                Playlist updatedPlaylist = playlistService.savePlaylist(playlist);
+                return ResponseEntity.ok(updatedPlaylist);
+            } else {
+                return ResponseEntity.status(403).build();
+            }
         } catch (EntityNotFoundException e) {
             return ResponseEntity.notFound().build();
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body(null);
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(null);
         }
     }
 
@@ -80,48 +106,39 @@ public class PlaylistController {
     }
 
 
-    @PutMapping("/{playlistId}")
-    public ResponseEntity<Playlist> updatePlaylist(
-            @PathVariable Long playlistId,
-            @RequestBody PlaylistDTO playlistDTO) {
+    @PutMapping("/{playlistId}/removeMusic/{musicId}")
+    public ResponseEntity<Playlist> removeMusicFromPlaylist(@PathVariable Long playlistId,
+                                                            @PathVariable Long musicId,
+                                                            @RequestParam Long userId,
+                                                            @RequestParam String userPassword) {
         try {
-            BaseUser user = userRepository.findById(playlistDTO.getPlaylistUser())
-                    .orElseThrow(() -> new EntityNotFoundException("Usuário não encontrado"));
-            if (!user.getUserPassword().equals(playlistDTO.getUserPassword())) {
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+            BaseUser user = userService.getUserById(userId);
+            if (!user.getUserPassword().equals(userPassword)) {
+                return ResponseEntity.status(401).build();
             }
-            Playlist playlistToUpdate = playlistService.getPlaylistById(playlistId);
-            playlistToUpdate.setPlaylistName(playlistDTO.getPlaylistName());
-            Playlist updatedPlaylist = playlistService.updatePlaylist(playlistId, playlistToUpdate);
-            return ResponseEntity.ok(updatedPlaylist);
+
+            Playlist playlist = playlistService.getPlaylistById(playlistId);
+
+            if (playlist.getPlaylistUser().getId().equals(userId)) {
+                Music music = musicService.getMusicById(musicId);
+
+                Set<Music> currentMusics = playlist.getPlaylistMusics();
+                if (currentMusics.contains(music)) {
+                    currentMusics.remove(music);
+                    playlist.setPlaylistMusics(currentMusics);
+                } else {
+                    return ResponseEntity.status(404).body(null);
+                }
+
+                Playlist updatedPlaylist = playlistService.savePlaylist(playlist);
+                return ResponseEntity.ok(updatedPlaylist);
+            } else {
+                return ResponseEntity.status(403).build();
+            }
         } catch (EntityNotFoundException e) {
             return ResponseEntity.notFound().build();
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body(null);
-        }
-    }
-
-
-    @DeleteMapping("/{playlistId}/remove-music/{musicId}")
-    public ResponseEntity<Playlist> removeMusicFromPlaylist(
-            @PathVariable Long playlistId,
-            @PathVariable Long musicId,
-            @RequestParam Long userId,
-            @RequestParam String userPassword) {
-        try {
-            BaseUser user = userRepository.findById(userId)
-                    .orElseThrow(() -> new EntityNotFoundException("Usuário não encontrado"));
-            user.validatePassword(userPassword);
-
-            Playlist updatedPlaylist = playlistService.removeMusicFromPlaylist(playlistId, musicId);
-
-            return ResponseEntity.ok(updatedPlaylist);
-        } catch (EntityNotFoundException e) {
-            return ResponseEntity.notFound().build();
-        } catch (SecurityException e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().build();
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(null);
         }
     }
 
