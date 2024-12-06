@@ -102,6 +102,22 @@ Pressione a tecla enter e em seguida execute a configuração para a senha:
 set SPRING_DATASOURCE_PASSWORD=exemplo
 ```
 
+Em caso de erro de autenticação em tempo de execução do projeto, retorne nesse passo e siga os seguintes passos:<br><br>
+**1. No diretório raíz do projeto, encontre a pasta "src";**<br>
+**2. Na pasta "src", localize a pasta "resources";**<br>
+**3. Na pasta "resources" você encontrará o arquivo "application.properties";**<br>
+**4. No arquivo, mude os métodos de autenticação e a url do banco para executar sem o set de variáveis.**<br>
+
+Feito isso, você não precisará mais utilizar os sets para username e senha.
+
+**Exemplo**
+```bash
+spring.jpa.hibernate.ddl-auto=update
+spring.datasource.url=jdbc:mysql://localhost:3306/dz7api
+spring.datasource.username=root
+spring.datasource.password=root
+```
+
 Após a conclusão do passo acima, realize a instalação das extensões do Java no Visual Studio Code, para isso, localize o menu de extensões na barra lateral esquerda do VSCode ou use o atalho **Ctrl+Shift+X** para abri-lo.
 Pesquise por "Java" e realize a instalação do "Extension Pack for Java", essa extensão facilita a execução e outras funções para a linguagem Java dentro do VSCode.
 
@@ -141,8 +157,12 @@ http://localhost:8080/swagger-ui/index.html
 Acessando cada um dos métodos, você poderá testar todos os endpoints para todos os controllers! <br><br>
 
 > [!NOTE]  
-> Para endpointes com necessidade de autenticação do usuário, cadastramos um usuário com privilégios de administrador.
+> Para endpoints com necessidade de autenticação do usuário, cadastramos um usuário com privilégios de administrador.
 > Para isso, preencha o ID com o número 5 e a senha com "senha123".
+
+**Exemplo de necessidade de autenticação.**
+
+![Swagger](img/userauth.png)<br>
 
 <h2>:computer:Responsáveis pelo projeto</h2>
 
