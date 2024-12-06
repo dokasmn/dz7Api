@@ -6,8 +6,8 @@ VALUES
     ('JPEGMAFIA', 'jpegmafia@email.com', 'senha123', NOW(), NOW(), 'Artist'),
     ('LEALL', 'leall@email.com', 'senha123', NOW(), NOW(), 'Artist'),
     ('Playboi Carti', 'carti@email.com', 'senha123', NOW(), NOW(), 'Artist'),
-    ('Sain', 'sain@email.com', 'senha123', NOW(), NOW(), 'Artist');
-
+    ('Sain', 'sain@email.com', 'senha123', NOW(), NOW(), 'Artist'),
+    ('adm', 'adm@gmail.com', 'senha123', NOW(), NOW(), 'Admin' );
 		
 INSERT INTO category (name_category, max_temperature, min_temperature, created_at, updated_at)
 VALUES
