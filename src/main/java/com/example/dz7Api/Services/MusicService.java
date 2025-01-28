@@ -114,4 +114,9 @@ public class MusicService {
         
         throw new IllegalArgumentException("Only admins or associated artists can update the music.");
     }
+
+
+    public List<Music> findAllByIds(List<Long> musicIds) {
+        return musicRepository.findAllById(musicIds);
+    }
 }

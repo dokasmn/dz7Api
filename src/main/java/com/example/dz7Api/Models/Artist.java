@@ -1,6 +1,7 @@
 package com.example.dz7Api.Models;
 
 import com.example.dz7Api.Models.base.BaseUser;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.List;
 
@@ -11,7 +12,9 @@ import jakarta.persistence.ManyToMany;
 @Entity
 public class Artist extends BaseUser {
 
+
     @ManyToMany(mappedBy = "owners")
+    @JsonIgnore
     private List<Music> musics;
 
 

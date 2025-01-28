@@ -8,7 +8,7 @@
 
 O DZ7API é um projeto de API desenvolvido para a Situação de Aprendizagem (SA) da unidade curricular de Programação Orientada a Objeto (POO).
 
-O objetivo da API em seu principal propósito é realizar a indicação de músicas com base na temperatura atual da localização do usuário, permitindo também a visualização de informações das músicas e artistas e criação de playlists.
+O principal objetivo da API é realizar a indicação de músicas com base na temperatura atual da localização do usuário, permitindo também a visualização de informações das músicas e artistas e criação de playlists.
 
 <h2>:pushpin: Estado atual</h2>
 
@@ -31,40 +31,40 @@ Para verificar sua versão do Java, abra seu prompt de comando (CMD) e utilize o
 java --version
 ```
 
-Este comando deve retornar a versão do Java instalada em seu compuador, caso o Java não seja encontrado, faça o download através do link abaixo:
+Este comando deve retornar a versão do Java instalada em seu computador, caso o Java não seja encontrado, faça o download através do link abaixo:
 
-:gear: [Java 23](https://jdk.java.net/23/) <br>
+:cd: [Java 23](https://jdk.java.net/23/) <br>
 :memo: [Tutorial de instalação](https://www.devmedia.com.br/instalacao-e-configuracao-do-pacote-java-jdk/23749)<br><br>
 
 **2. Maven 3.9+**<br>
-Para gerenciar as dependências utilizadas, este projeto utiliza o Maven na versão 3.9. Caso já possua a instalação, verique a versão utilizando o comando:
+Para gerenciar as dependências utilizadas, este projeto utiliza o Maven na versão 3.9. Caso já possua a instalação, verifique a versão utilizando o comando:
 
 ```bash
 mvn --version
 ```
 
-Caso não possuir o Maven instalado, faça o download através do link abaixo:
+Caso não possua o Maven instalado, faça o download através do link abaixo:
 
-:gear: [Maven 3.9.9](https://maven.apache.org/download.cgi) <br>
+:cd: [Maven 3.9.9](https://maven.apache.org/download.cgi) <br>
 :memo: [Documentação](https://maven.apache.org/install.html)<br><br>
 
 **3. MySQL 8.0.x**<br>
-Para realizar a gravação e gerenciamento dos dados, foi utilizado o MySQL Workbench Community. Caso já possua uma instalçao, verique a versão utilizando o comando:
+Para realizar a gravação e gerenciamento dos dados, foi utilizado o MySQL Workbench Community. Caso já possua uma instalação, verique a versão utilizando o comando:
 
 ```bash
 mysql --version
 ```
 
-Caso não possuir o MySQL instalado, faça o download através do link abaixo:
+Caso não possua o MySQL instalado, faça o download através do link abaixo:
 
-:gear: [MySQL](https://www.mysql.com/downloads/)<br>
+:cd: [MySQL](https://www.mysql.com/downloads/)<br>
 :memo: [Tutorial de instalação](https://www.alura.com.br/artigos/mysql-do-download-e-instalacao-ate-sua-primeira-tabela)<br><br>
 
 <h2>:arrow_down: Clonando o projeto</h2>
 
-Para iniciar, você necesita possuir uma IDE para executar esse projeto, caso não possua, realize a instalação do Visual Studio Code (VSCode) pelo link abaixo:
+Para iniciar, você necessita possuir uma IDE para executar esse projeto, caso não possua, realize a instalação do Visual Studio Code (VSCode) pelo link abaixo:
 
-:gear: [Visual Studio Code](https://code.visualstudio.com/Download)<br>
+:cd: [Visual Studio Code](https://code.visualstudio.com/Download)<br>
 :memo: [Tutorial de instalação](https://www.devmedia.com.br/guia-completo-do-visual-studio-code/43827)<br><br>
 
 Após concluir a instalação, siga os seguintes passos:
@@ -80,36 +80,99 @@ git clone https://github.com/dokasmn/dz7Api.git
 Agora você possui uma cópia do projeto para testar! <br>
 
 <h2>:gear: Configurações</h2>
-Dentro da pasta raíz, possuimos arquivos que necessitam de configuração, portanto:
-
-**1.** Encontre a pasta "src" no diretório da API;<br>
-**2.** Localize a pasta "resources";<br>
-**3.** Localize o arquivo "application.porperties".<br>
-**4.** Altere os campos "spring.datasource.username" e "spring.datasource.password" para o usuário e senha que você configurou no MySQL.
-
-**Exemplo:**
+Para começar, você deve configurar o acesso ao banco de dados pela API, lembre-se de estar no diretótio do projeto! Se não tiver certeza que está na pasta correta, execute o comando:
+<br><br>
 
 ```bash
+cd dz7api
+```
+
+Em seguida, execute o seguinte comando para configurar o acesso ao seu banco de dados:<BR>
+
+>[!WARNING]
+>Troque a palavra "exemplo" pelo username e senha que você escolheu no momento de configurar seu acesso no MySQL Workbench.
+
+```bash
+set SPRING_DATASOURCE_USERNAME=exemplo
+```
+
+Pressione a tecla enter e em seguida execute a configuração para a senha:
+
+```bash
+set SPRING_DATASOURCE_PASSWORD=exemplo
+```
+
+Em caso de erro de autenticação em tempo de execução do projeto, retorne nesse passo e siga os seguintes passos:<br><br>
+**1. No diretório raíz do projeto, encontre a pasta "src";**<br>
+**2. Na pasta "src", localize a pasta "resources";**<br>
+**3. Na pasta "resources" você encontrará o arquivo "application.properties";**<br>
+**4. No arquivo, mude os métodos de autenticação e a url do banco para executar sem o set de variáveis.**<br>
+
+Feito isso, você não precisará mais utilizar os sets para username e senha.
+
+**Exemplo**
+```bash
+spring.jpa.hibernate.ddl-auto=update
+spring.datasource.url=jdbc:mysql://localhost:3306/dz7api
 spring.datasource.username=root
 spring.datasource.password=root
 ```
 
-Após o passo acima, realize a instalação das extensões do Java no Visual Studio Code, para isso, localize o menu de extensões na barra lateral esquerda do VSCode ou use o atalho **Ctrl+Shift+X** para abri-lo.
-Pesquise por "Java" e realize a instalação do "Extension Pack for Java", essa extensão facilita a execução e outras funções dentro do VSCode.
+Após a conclusão do passo acima, realize a instalação das extensões do Java no Visual Studio Code, para isso, localize o menu de extensões na barra lateral esquerda do VSCode ou use o atalho **Ctrl+Shift+X** para abri-lo.
+Pesquise por "Java" e realize a instalação do "Extension Pack for Java", essa extensão facilita a execução e outras funções para a linguagem Java dentro do VSCode.
 
 <h2>:rocket: Criando o banco de dados e iniciando projeto </h2>
 
 Para iniciar, crie um banco de dados chamado "dz7api" no seu MySQL Workbench:
 
 ```bash
-CREATE DATABASE dz7aoi;
+CREATE DATABASE dz7api;
 ```
 
 Depois, voltando ao VSCode, acesse a pasta "src", em seguida a pasta "java" e abra o arquivo "Dz7ApiApplication.java" e execute o mesmo, ou execute pelo terminal com o comando:
 
 ```bash
-mvn spring:boot run 
+mvn spring-boot:run
 ```
+
+Se o projeto for executado com sucesso, você verá uma mensagem de retorno indicando que a build foi bem sucedida!
+
+<h2>:earth_americas: Populando o banco de dados</h2>
+
+Para que os testes já possam ser realizados sem a necessidade de cadastrar vários dados, separamos um arquivo com o nome "presets.sql". Esse arquivo pode ser encontrado na pasta raíz do projeto.<br><br>
+Abra o MySQL Workbench com o banco de dados já criado e abra o arquivo "presets.sql", em seguida execute as queries individualmente para evitar erros.
+
+<h2>:spider_web:Acessando os endpoints</h2>
+
+Por fim, acesse os endpoints através da URL do Swagger para testar os endpoints. Por padrão, o Swagger hospeda sua UI no localhost de sua máquina, através do seguinte link:
+
+```bash
+http://localhost:8080/swagger-ui/index.html
+```
+
+**Exemplo da interface do Swagger:**
+
+![Swagger](img/swagger.png)<br>
+
+Acessando cada um dos métodos, você poderá testar todos os endpoints para todos os controllers! <br><br>
+
+> [!NOTE]  
+> Para endpoints com necessidade de autenticação do usuário, cadastramos um usuário com privilégios de administrador.
+> Para isso, preencha o ID com o número 5 e a senha com "senha123".
+
+**Exemplo de necessidade de autenticação.**
+
+![Swagger](img/userauth.png)<br>
+
+<h2>:computer:Responsáveis pelo projeto</h2>
+
+[Eliel Schubert](https://github.com/elielschubert/) e [Cauan Moreira](https://github.com/dokasmn/).
+
+
+
+
+
+
 
 
 

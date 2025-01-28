@@ -7,6 +7,10 @@ import jakarta.persistence.Entity;
 @Entity
 public class Admin extends BaseUser {
 
+
+    public Admin() {}
+
+
     public Admin(String username, String email, String password) {
         super(username, email, password);
     }

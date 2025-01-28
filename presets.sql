@@ -6,8 +6,8 @@ VALUES
     ('JPEGMAFIA', 'jpegmafia@email.com', 'senha123', NOW(), NOW(), 'Artist'),
     ('LEALL', 'leall@email.com', 'senha123', NOW(), NOW(), 'Artist'),
     ('Playboi Carti', 'carti@email.com', 'senha123', NOW(), NOW(), 'Artist'),
-    ('Sain', 'sain@email.com', 'senha123', NOW(), NOW(), 'Artist');
-
+    ('Sain', 'sain@email.com', 'senha123', NOW(), NOW(), 'Artist'),
+    ('adm', 'adm@gmail.com', 'senha123', NOW(), NOW(), 'Admin' );
 		
 INSERT INTO category (name_category, max_temperature, min_temperature, created_at, updated_at)
 VALUES
@@ -23,14 +23,14 @@ VALUES
     ('BRA', 173, 'Hip-hop', 'youtube.com/watch?v=LCyrRfi2-9k', 'Aquelas Coisas Mais Pra Frente', 2, NOW(), NOW());
 
 
-INSERT INTO playlist (name_playlist, created_at, updated_at)
+INSERT INTO playlist (name_playlist, created_at, updated_at, user_id)
 VALUES
-    ('Ritmo de verão', NOW(), NOW()),
-    ('Batidas do inverno', NOW(), NOW());
+    ('Ritmo de verão', NOW(), NOW(), 1),
+    ('Batidas do inverno', NOW(), NOW(), 2);
 
 
 
-INSERT INTO artist_has_music(artist_id, music_id)
+INSERT INTO music_has_artist (artist_id, music_id)
 VALUES
 (1, 1),
 (2, 2),
